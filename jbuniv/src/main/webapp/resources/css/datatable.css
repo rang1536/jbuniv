@@ -1,0 +1,150 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+body{font-family: 'Noto Sans KR', sans-serif;}
+a{ text-decoration:none }
+#wrap{width:100%; height:100%;}
+#wrap #sideMenu{height:100%; position:fixed; border-right:1px solid #ccc; float:left; z-index: 1; background:#fff;}
+#wrap #sideMenu #loginMenu{width:100%; margin-top:50px; margin-left:60px;}
+#wrap #sideMenu #loginMenu li{float:left;width:30%; padding:0 10px; text-align: center;}
+#wrap #sideMenu #loginMenu li a{color:#7F7D7F; font-size:15px; text-decoration:none;}
+#wrap #sideMenu #nameTitle{width:100%; text-align: center;margin-top:220px; font-size:36px; font-weight:500; color:#DA653A;}
+#wrap #sideMenu #categoryMenu{width:100%;margin-top:50px; text-align:center;}
+#wrap #sideMenu #categoryMenu li{width:100%; padding:15px 0;}
+#wrap #sideMenu #categoryMenu li a{color:#434343; text-align: center; font-size:18px;}
+#wrap #sideMenu #categoryMenu li:hover a{font-weight: bold;}
+#wrap #sideMenu #openSide {margin-top:30px; margin-left:20px;}
+#wrap #sideMenu #openSide{display: none;}
+.noneAppear{display: none;}
+
+#wrap #content{height:100%;margin-left:320px; }
+#wrap #content #container{width:1200px; height:100%;margin-left:20px; margin-top:150px; padding-right:20px;}
+#wrap #content #container h4{font-size:40px;}
+#wrap #content #container table{margin-top:10px; border-top:2px solid #DA653A;}
+#wrap #content #container table tr{height:55px; border-bottom:1px solid #ccc;}
+#wrap #content #container table th{height:55px; vertical-align: middle; background:#F8F7F8; text-align: center !important; border-right:1px solid #ccc; border-bottom: 1px solid #ccc;}
+#wrap #content #container table th:last-child{border-right: 0;}
+#wrap #content #container table thead{border-bottom:1px solid #ccc;}
+#wrap #content #container table td{height:50px; vertical-align: middle; text-align: center; border-right:1px solid #ccc;  border-bottom: 1px solid #ccc;}
+#wrap #content #container table td:last-child{border-right:0;}
+#wrap #content #container table td.title{background:#F8F8F8; text-align: left;}
+#wrap #content #container table td.title .area{margin-left:15px;}
+#wrap #content #container table td.title .area2{margin-left:28px;}
+#wrap #content #container table td .star{color:#DA653A; display: inline-block; font-size: 20px; margin-right:5px;}
+#wrap #content #container table td.inputTd{text-align: left;}
+#wrap #content #container table td.inputTd input{ margin-left:30px; width:300px; padding-left:15px; height:40px; border:1px solid #ccc;}
+#wrap #content #container table td.inputTd input#nickName{ margin-left:30px; width:200px; padding-left:15px; height:40px; }
+#wrap #content #container table td.inputTd input#id{ margin-left:30px; width:200px; padding-left:15px; height:40px;}
+#wrap #content #container table td #cmmPercent{width:120px;}
+#wrap #content #container table td #calcCost{width:120px;}
+#wrap #content #buttonWrap{width:100%; margin-top:50px;}
+.btn-primary{background:#e8540b !important; border:0;}
+#addTeam{float:right; margin-top:-90px;}
+#submitTeam{margin-left:200px;}
+#submitInfo{margin-left:220px;}
+.checkNickName{float:right;margin-top:2px;margin-right:30px; font-size:16px;}
+.checkId{float:right;margin-top:2px;margin-right:30px; font-size:16px;}
+#dataWrap table input{text-align:center;}
+#wrap #content #container #listTab{width:100%; border-top:2px solid #DA653A;  border-bottom:1px solid #ccc; margin-top:30px;}
+#wrap #content #container #listTab ul{width:100%;}
+#wrap #content #container #listTab ul li{float:left; width:33.3%; text-align: center; cursor: pointer; }
+#wrap #content #container #listTab ul li a{color:#434343; font-size:20px; padding:15px 0; padding-bottom:20px; text-decoration:none; display:block;}  
+#wrap #content #container #listTab ul li a.on{color:#DA653A; }
+#wrap #content #container #listTab ul li span{ margin-left:10px;}
+#wrap #content #container #listTab ul li span img{margin-bottom:-5px;}
+#wrap #content #container .tabTable{margin-top:30px;}
+#wrap #content #container .tabTable h5{font-size: 30px;}
+#wrap #content #container .tabTable h5 span{font-size:25px;}
+
+.searchWrap{width:100%; text-align:right;}
+.searchWrap .searchContent{ position:absolute; top:363px; margin-top margin-bottom:100px; z-index:1;}
+.searchWrap select{margin:0 4px;  background: #fff;}
+.searchWrap span{font-weight: bold; font-size:20px; margin-left: 10px;}
+.searchWrap input{width:180px; height:30px; font-size:20px; padding-bottom:2px; border:0; text-align: right; margin-left:3px; font-weight:500;}
+
+.searchWrap2{width:100%; text-align:right;}
+.searchWrap2 .searchContent{ position:absolute; height:30px; top:242px; z-index:1;}
+.searchWrap2 select{margin:0 4px;  background: #fff;}
+.searchWrap2 span{font-weight: bold; font-size:20px; margin-left: 10px;}
+.searchWrap2 input{width:180px; height:30px;  font-size:20px; padding-bottom:2px; border:0; text-align: right; margin-left:3px;  font-weight:500;}
+
+#commissionWrap{width:190px; border:1px solid #ccc; border-radius: 3px; line-height: 2em; position:absolute; margin-left:20px; top:70px;}
+#commissionWrap #commissionTxt{float:left; margin-left:10px;}
+#commissionWrap #commissionPercent{float:right; margin-right:10px;}
+
+
+#DataTables_Table_0_wrapper{width:1200px; !important; margin-top:50px;}
+#DataTables_Table_0_filter{width:1200px; !important;}
+.pagination{margin:0 auto;}
+div.dataTables_wrapper div.dataTables_paginate{text-align: center !important; margin-top:60px;}
+div.dataTables_filter{text-align:right !important;}
+.dataTables_paginate{width:1200px !important;}
+.dataTables_info{display: none;}
+div.dataTables_filter input{width:150px !important;}
+div.dataTables_wrapper div.dataTables_filter input{  font-size:16px !important; margin-bottom:5px !important;}
+.btn-group, .btn-group-vertical{display: block !important; margin-bottom:20px;}
+.dt-buttons a{margin-bottom:15px !important;}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{background:#e8540b; border-color:#ccc;}
+.pagination > li > a, .pagination > li > span{color:#434343;}
+
+
+
+.clearFix{content: ""; display: inline-block; clear: both;}
+ 
+ #content table{
+                
+               width: 100%;;
+                border-top:2px solid cornflowerblue;
+             
+            }
+           #content  table thead th{
+                
+   
+                  background-color: lightgoldenrodyellow;
+               padding: 10px;
+               border-right: 1px  solid #ccc;
+                  border-bottom: 1px solid #ccc;
+       text-align: center;
+            }  
+              #content  table tbody tr td{
+                            
+           
+                padding: 10px !important;
+                  border-right: 1px  solid #ccc;
+                  border-bottom: 1px solid #ccc;
+            }  
+            #content  table tbody tr:hover{
+                 background-color : #dbdef8;
+/*                  color : white */
+            }
+             #content  table tbody tr:hover td{
+               
+/*                  color : white */
+            }
+  #content .buttons-excel{
+/*                  background-color: aqua; */
+  border: 2px  solid #ccc;
+            }    
+            .amc_content {
+             background-color: white;
+            }
+      #content  .buttons-print {
+ 
+  border: 2px  solid #ccc !important;
+            }    
+            .amc_content {
+             background-color: white;
+            }
+            
+  div  .btn-group{
+   position: relative;
+  }      
+ #buttonWrap{
+ 
+    float : left;
+    font-size : 10px;
+  }
+  #buttonWrap input{
+      font-size: 14px !important;
+          width: 70px !important;
+      }    
+</style>

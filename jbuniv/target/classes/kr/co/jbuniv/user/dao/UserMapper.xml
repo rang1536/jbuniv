@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserDao">
+
+<!--회원입력  -->
+<insert id="insertUser" parameterType="kr.co.jbuniv.user.domain.Users">
+	INSERT INTO JBUNIV.USERS(
+		seq_no
+		,name
+		,db_input
+		,input_date
+		<if test="relationType != null and relationType != ''">,relation_type</if>
+		<if test="relation1 != null and relation1 != ''">,relation_1</if>
+		<if test="relation2 != null and relation2 != ''">,relation_2</if>
+		<if test="studentId != null and studentId != ''">,studentid</if>
+		<if test="admission != null and admission != ''">,admission</if>
+		<if test="graduated != null and graduated != ''">,graduated</if>
+		<if test="hp != null and hp != ''">,hp</if>
+		<if test="company != null and company != ''">,company</if>
+		<if test="department != null and department != ''">,department</if>
+		<if test="position != null and position != ''">,position</if>
+		<if test="directPhone != null and directPhone != ''">,direct_phone</if>
+		<if test="mainPhone != null and mainPhone != ''">,main_phone</if>
+		<if test="extension != null and extension != ''">,extension</if>
+		<if test="myPin != null and myPin != ''">,myPin</if>
+		<if test="controlNumber != null and controlNumber != ''">,control_number</if>
+		<if test="ssn != null and ssn != ''">,ssn</if>
+		<if test="birth != null and birth != ''">,birth</if>
+		<if test="lunar != null and lunar != ''">,lunar</if>
+		<if test="wedding != null and wedding != ''">,wedding</if>
+		<if test="zipCode != null and zipCode != ''">,zipcode</if>
+		<if test="homeAddress != null and homeAddress != ''">,home_address</if>
+		<if test="homeSangseAdd != null and homeSangseAdd != ''">,home_sangseAdd</if>
+		<if test="task != null and task != ''">,task</if>
+		<if test="comZipCode != null and comZipCode != ''">,com_zipCode</if>
+		<if test="comAddress != null and comAddress != ''">,com_address</if>
+		<if test="comFax != null and comFax != ''">,com_fax</if>
+		<if test="postAddress != null and postAddress != ''">,postaddress</if>
+		<if test="respect != null and respect != ''">,respect</if>
+		<if test="memo != null and memo != ''">,memo</if>
+		<if test="homepage != null and homepage != ''">,homepage</if>
+		<if test="updateDate != null and company != ''">,update_date</if>		
+		<if test="reservedDate != null and reservedDate != ''">,reserved_date</if>
+		<if test="schoolDepart != null and schoolDepart != ''">,school_depart</if>
+		<if test="imgName != null and imgName != ''">,img_name</if>
+		<if test="searchKey != null and searchKey != ''">,search_key</if>
+		<if test="homePhone != null and homePhone != ''">,home_phone</if>
+		<if test="email != null and email != ''">,email</if>
+		<if test="team != null and team != ''">,team</if>
+		<if test="response != null and response != ''">,response</if>
+		<if test="etc1 != null and etc1 != ''">,etc1</if>
+		<if test="etc2 != null and etc2 != ''">,etc2</if>
+		<if test="etc3 != null and etc3 != ''">,etc3</if>
+		<if test="callDate != null and callDate != ''">,call_date</if>
+		<if test="dbUpdate != null and dbUpdate != ''">,db_update</if>
+		<if test="reject != null and reject != ''">,reject</if>
+		<if test="comSangseAdd != null and comSangseAdd != ''">,com_sangseadd</if>
+		<if test="gender != null and gender != ''">,gender</if>
+		<if test="manager != null and manager != ''">,manager</if>
+		)
+	VALUES(
+		jbuniv_user_seq.nextval
+		,#{name}
+		,to_char(sysdate,'YY-MM-DD')
+		,to_char(sysdate,'YY-MM-DD')
+		<if test="relationType != null and relationType != ''">,#{relationType}</if>
+		<if test="relation1 != null and relation1 != ''">,#{relation1}</if>
+		<if test="relation2 != null and relation2 != ''">,#{relation2}</if>
+		<if test="studentId != null and studentId != ''">,#{studentId}</if>
+		<if test="admission != null and admission != ''">,#{admission}</if>
+		<if test="graduated != null and graduated != ''">,#{graduated}</if>
+		<if test="hp != null and hp != ''">,#{hp}</if>
+		<if test="company != null and company != ''">,#{company}</if>
+		<if test="department != null and department != ''">,#{department}</if>
+		<if test="position != null and position != ''">,#{position}</if>
+		<if test="directPhone != null and directPhone != ''">,#{directPhone}</if>
+		<if test="mainPhone != null and mainPhone != ''">,#{mainPhone}</if>
+		<if test="extension != null and extension != ''">,#{extension}</if>
+		<if test="myPin != null and myPin != ''">,#{myPin}</if>
+		<if test="controlNumber != null and controlNumber != ''">,#{controlNumber}</if>
+		<if test="ssn != null and ssn != ''">,#{ssn}</if>
+		<if test="birth != null and birth != ''">,#{birth}</if>
+		<if test="lunar != null and lunar != ''">,#{lunar}</if>
+		<if test="wedding != null and wedding != ''">,#{wedding}</if>
+		<if test="zipCode != null and zipCode != ''">,#{zipCode}</if>
+		<if test="homeAddress != null and homeAddress != ''">,#{homeAddress}</if>
+		<if test="homeSangseAdd != null and homeSangseAdd != ''">,#{homeSangseAdd}</if>
+		<if test="task != null and task != ''">,#{task}</if>
+		<if test="comZipCode != null and comZipCode != ''">,#{comZipCode}</if>
+		<if test="comAddress != null and comAddress != ''">,#{comAddress}</if>
+		<if test="comFax != null and comFax != ''">,#{comFax}</if>
+		<if test="postAddress != null and postAddress != ''">,#{postAddress}</if>
+		<if test="respect != null and respect != ''">,#{respect}</if>
+		<if test="memo != null and memo != ''">,#{memo}</if>
+		<if test="homepage != null and homepage != ''">,#{homepage}</if>
+		<if test="updateDate != null and company != ''">,#{company}</if>
+		<if test="reservedDate != null and reservedDate != ''">,#{reservedDate}</if>
+		<if test="schoolDepart != null and schoolDepart != ''">,#{schoolDepart}</if>
+		<if test="imgName != null and imgName != ''">,#{imgName}</if>
+		<if test="searchKey != null and searchKey != ''">,#{searchKey}</if>
+		<if test="homePhone != null and homePhone != ''">,#{homePhone}</if>
+		<if test="email != null and email != ''">,#{email}</if>
+		<if test="team != null and team != ''">,#{team}</if>
+		<if test="response != null and response != ''">,#{response}</if>
+		<if test="etc1 != null and etc1 != ''">,#{etc1}</if>
+		<if test="etc2 != null and etc2 != ''">,#{etc2}</if>
+		<if test="etc3 != null and etc3 != ''">,#{etc3}</if>
+		<if test="callDate != null and callDate != ''">,#{callDate}</if>
+		<if test="dbUpdate != null and dbUpdate != ''">,#{dbUpdate}</if>
+		<if test="reject != null and reject != ''">,#{reject}</if>
+		<if test="comSangseAdd != null and comSangseAdd != ''">,#{comSangseAdd}</if>
+		<if test="gender != null and gender != ''">,#{gender}</if>
+		<if test="manager != null and manager != ''">,#{manager}</if>
+		
+		)
+</insert>
+
+<!-- 회원정보수정 -->
+<update id="updateUser" parameterType="kr.co.jbuniv.user.domain.Users">
+	UPDATE JBUNIV.USERS
+	SET
+		name = #{name}
+		,db_update = to_char(sysdate,'YYYY-MM-DD')
+		,update_date = to_char(sysdate,'YYYY-MM-DD')
+		<if test="relationType != null and relationType != ''">,relation_type = #{relationType}</if>
+		<if test="relation1 != null and relation1 != ''">,relation_1 = #{relation1}</if>
+		<if test="relation2 != null and relation2 != ''">,relation_2 = #{relation2}</if>
+		<if test="studentId != null and studentId != ''">,studentid = #{studentId}</if>
+		<if test="admission != null and admission != ''">,admission = #{admission}</if>
+		<if test="graduated != null and graduated != ''">,graduated = #{graduated}</if>
+		<if test="hp != null and hp != ''">,hp = #{hp}</if>
+		<if test="company != null and company != ''">,company = #{company}</if>
+		<if test="department != null and department != ''">,department = #{department}</if>
+		<if test="position != null and position != ''">,position = #{position}</if>
+		<if test="directPhone != null and directPhone != ''">,direct_phone = #{directPhone}</if>
+		<if test="mainPhone != null and mainPhone != ''">,main_phone = #{mainPhone}</if>
+		<if test="extension != null and extension != ''">,extension = #{extension}</if>
+		<if test="myPin != null and myPin != ''">,myPin = #{myPin}</if>
+		<if test="controlNumber != null and controlNumber != ''">,control_number = #{controlNumber}</if>
+		<if test="ssn != null and ssn != ''">,ssn = #{ssn}</if>
+		<if test="birth != null and birth != ''">,birth = #{birth}</if>
+		<if test="lunar != null and lunar != ''">,lunar = #{lunar}</if>
+		<if test="wedding != null and wedding != ''">,wedding = #{wedding}</if>
+		<if test="zipCode != null and zipCode != ''">,zipcode = #{zipCode}</if>
+		<if test="homeAddress != null and homeAddress != ''">,home_address = #{homeAddress}</if>
+		<if test="homeSangseAdd != null and homeSangseAdd != ''">,home_sangseAdd = #{homeSangseAdd}</if>
+		<if test="task != null and task != ''">,task = #{task}</if>
+		<if test="comZipCode != null and comZipCode != ''">,com_zipCode = #{comZipCode}</if>
+		<if test="comAddress != null and comAddress != ''">,com_address = #{comAddress}</if>
+		<if test="comFax != null and comFax != ''">,com_fax = #{comFax}</if>
+		<if test="postAddress != null and postAddress != ''">,postaddress = #{postAddress}</if>
+		<if test="respect != null and respect != ''">,respect = #{respect}</if>
+		<if test="memo != null and memo != ''">,memo = #{memo}</if>
+		<if test="homepage != null and homepage != ''">,homepage = #{homepage}</if>
+		<if test="reservedDate != null and reservedDate != ''">,reserved_date = #{reservedDate}</if>
+		<if test="schoolDepart != null and schoolDepart != ''">,school_depart = #{schoolDepart}</if>
+		<if test="imgName != null and imgName != ''">,img_name = #{imgName}</if>
+		<if test="searchKey != null and searchKey != ''">,search_key = #{searchKey}</if>
+		<if test="homePhone != null and homePhone != ''">,home_phone = #{homePhone}</if>
+		<if test="email != null and email != ''">,email = #{email}</if>
+		<if test="team != null and team != ''">,team = #{team}</if>
+		<if test="response != null and response != ''">,response = #{response}</if>
+		<if test="etc1 != null and etc1 != ''">,etc1 = #{etc1}</if>
+		<if test="etc2 != null and etc2 != ''">,etc2 = #{etc2}</if>
+		<if test="etc3 != null and etc3 != ''">,etc3 = #{etc3}</if>
+		<if test="callDate != null and callDate != ''">,call_date = #{callDate}</if>
+		<if test="reject != null and reject != ''">,reject = #{reject}</if>
+		<if test="comSangseAdd != null and comSangseAdd != ''">,com_sangseadd = #{comSangseAdd}</if>
+		<if test="gender != null and gender != ''">,gender = #{gender}</if>
+		<if test="manager != null and manager != ''">,manager = #{manager}</if>
+	WHERE
+		SEQ_NO = #{seqNo}
+</update>
+
+
+<!-- 카테별 단과, 대학원별 동창목록조회 -->
+<select id="selectUsersByRelType" parameterType="Map" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT 
+		* 
+	FROM (SELECT
+			ROWNUM AS RNUM,
+			A.seq_no,
+			A.name,
+			A.relation_1,
+			A.relation_2,
+			A.hp,
+			A.company,
+			A.home_phone,
+			A.direct_phone,
+			A.main_phone
+		FROM
+			JBUNIV.USERS A
+		WHERE
+			RELATION_TYPE = #{relationType}
+		AND
+			RELATION_1 = #{relation1}
+		)
+	WHERE 
+		RNUM BETWEEN #{startNum} AND #{endNum}	
+</select>
+
+<select id="selectUsersByRelTypeAll" parameterType="Map" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT
+		A.seq_no,
+		A.name,
+		A.relation_1,
+		A.relation_2,
+		A.hp,
+		A.company,
+		A.home_phone,
+		A.direct_phone,
+		A.main_phone
+	FROM
+		JBUNIV.USERS A
+	WHERE
+		RELATION_TYPE = #{relationType}
+	AND
+		RELATION_1 = #{relation1}
+			
+</select>
+
+<!-- 시퀀스번호로 회원정보 조회 -->
+<select id="selectUserBySeqNo" parameterType="int" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT
+		*
+	FROM
+		JBUNIV.USERS
+	WHERE
+		SEQ_NO = #{seqNo}
+</select>
+
+<!-- DB카운트 조회(어깨동무) -->
+<select id="selectCountAll1" resultType="int">
+	SELECT
+		COUNT(*)
+	FROM 
+		JBUNIV.USERS
+</select>
+
+<!-- DB카운트 조회(발전지원부) -->
+<select id="selectCountAll2" resultType="int">
+	SELECT
+		COUNT(*)
+	FROM 
+		JBUNIV.NEWUSER
+</select>
+
+<!-- DB정제 > 선택된 인덱스조회 -->
+<select id="selectDataSelected" parameterType="Map" resultType="kr.co.jbuniv.user.domain.TbUser">
+	SELECT
+		*
+	FROM
+		JBUNIV.TB_USER
+	WHERE
+		SEQ_NO &gt;= #{startNum}
+	AND
+		SEQ_NO &lt;= #{endNum}
+	ORDER BY SEQ_NO
+</select>
+
+<!-- DB정제 > 어깨동무 일치조건자 검색(동명인) -->
+<select id="selectUserByNameNRel" parameterType="kr.co.jbuniv.user.domain.TbUser" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT
+		*
+	FROM
+		JBUNIV.USERS
+	WHERE
+		NAME = #{name}
+	<if test="relation1 != null and relation1 != ''">
+		AND RELATION_1 = #{relation1}
+	</if>
+	<if test="admission != null and admission != ''">
+		AND ADMISSION LIKE '%'||#{admission}
+	</if>
+</select>
+
+<!-- 전화번호 형식 일원화 작업위한 전화번호 조회 (퍼짐방지 1000단위 실행)-->
+<select id="selectHpForRefine" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT
+		SEQ_NO,
+		HP
+	FROM 
+		JBUNIV.USERS
+	WHERE
+		SEQ_NO &gt;= 100000
+	AND
+		SEQ_NO &lt;= 160000
+</select>
+
+<!-- 0000-000-0000형식으로 하이픈 잘못 들어간 행 조회 -->
+<select id="selectHpRefine2" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT 
+		seq_no,
+		hp
+	FROM 
+		JBUNIV.USERS
+	WHERE 
+		HP LIKE '01__-%'
+</select>
+
+<!-- 핸드폰번호값이 null인 행 조회 -->
+<select id="selectHpIsNull" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT
+		SEQ_NO,
+		MAIN_PHONE
+	FROM
+		JBUNIV.NEWUSER
+	WHERE
+		HP IS NULL
+</select>
+
+
+<!-- 전화번호 일원화된 형식으로 세팅된 값 업데이트 -->
+<update id="updateHp" parameterType="kr.co.jbuniv.user.domain.Users">
+	UPDATE
+		JBUNIV.NEWUSER
+	SET
+		HP = #{hp}
+	WHERE
+		SEQ_NO = #{seqNo}
+</update>
+
+<!-- 이상데이터 조회 -->
+<select id="selectUserStrange" parameterType="int" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT
+		*
+	FROM
+		JBUNIV.TB_USER
+	WHERE
+		SEQ_NO = #{seqNo}
+</select>
+
+</mapper>

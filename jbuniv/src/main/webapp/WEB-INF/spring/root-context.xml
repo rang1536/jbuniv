@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+						http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+						http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- DB 연결 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@175.202.108.60:1521:kis" />
+		<property name="username" value="admin" />
+		<property name="password" value="sRc0488#" />
+	</bean>
+
+	<!-- sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:kr/co/jbuniv/util/MyBatisConfig.xml" />
+		<!-- db의 컬럼과 dto의 프로퍼티명을 자동으로 매핑 -->
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:kr/co/jbuniv/user/dao/UserMapper.xml</value>
+				<!-- <value>classpath:kr/rda/m/farm/dao/FarmMapper.xml</value> -->
+			</list>
+		</property>
+	</bean>
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
+   <!-- MultipartResolver 설정 -->
+<!--     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
+<!--         <property name="maxUploadSize" value="100000000" /> -->
+<!--         <property name="maxInMemorySize" value="100000000" /> -->
+<!--     </bean> -->
+
+ 
+</beans>

@@ -1,0 +1,11 @@
+@charset "EUC-KR";
+table tbody tr td{
+	text-align:center;
+}
+ div div div#content {
+	
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+	
+}
