@@ -44,6 +44,11 @@
     
     <div class="row">
 		<form id="inputForm1" action="dbRefine" method="post">
+			<select name="defineType" id="defineType">
+				<option value="3">재경인명록</option>
+				<option value="2">발전지원부</option>
+				<option value="1">어깨동무</option>
+			</select>
 			<input type="text" name="startNum" id="startNum" placeholder="시작"/>
 			<input type="text" name="endNum" id="endNum" placeholder="끝"/>
 			<button type="button" onclick="submit(1);" style="background-color:#9FC93C;color:black;font-weight:bold;">정제하기</button>

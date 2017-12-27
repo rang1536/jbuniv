@@ -30,10 +30,7 @@
 
 <script>
 	$(document).ready(function(){
-		var relationType = '${relationType}';
-		var relation1 = '${relation1}';
 		var startNum = '${startNum}';
-		var type= '${type}';
 		
    		var table = 
         $('#payList').DataTable( {
@@ -68,14 +65,14 @@
        },
 	    ajax : {
 	   
-	      "url":"strangeListAjax" ,
+	      "url":"strangeListAjax?startNum="+startNum,
 	      "type":"POST",
 	      "dataSrc": function(json){
 	    	   var list = json.list;
 	    	   
 	    	   for(var i=0; i<list.length; i++){
 					// 데이터 수정버튼 추가
-	   	      		list[i].updateBtn ="<div align='center'><a href='modifyUser?seqNo="+list[i].seqNo+"&type=2'><input type='button' value='수정'></a></div>";		   	    			   	    	
+	   	      		list[i].updateBtn ="<div align='center'><a href='sameCheck?seqNo="+list[i].seqNo+"'><input type='button' value='중복체크'></a></div>";		   	    			   	    	
    	           }
 	    	    return json.list
 	      	}
@@ -101,11 +98,9 @@
 	});
 	
 	function nextData(){
-		var startNum = parseInt($('#startNum').val()) + 100;
-		var relationType = $('#relationType').val()
-		var relation1 = $('#relation1').val()
-		
-		location.href = 'userList?startNum='+startNum+'&relationType='+relationType+'&relation1='+relation1;
+		var startNum = parseInt($('#startNum').val()) + 10;
+	
+		location.href = 'strangeList?startNum='+startNum;
 	}
 	
 	function prevData(){
@@ -113,11 +108,9 @@
 			alert("첫페이지 입니다.");
 			return;
 		}
-		var startNum = parseInt($('#startNum').val()) - 100;
-		var relationType = $('#relationType').val()
-		var relation1 = $('#relation1').val()
+		var startNum = parseInt($('#startNum').val()) - 10;
 		
-		location.href = 'userList?startNum='+startNum+'&relationType='+relationType+'&relation1='+relation1;
+		location.href = 'strangeList?startNum='+startNum;
 	}
 	
 	function totalData(){
@@ -126,18 +119,15 @@
 		var startNum = 0;
 		var type = 'all';
 		
-		location.href = 'userList?startNum='+startNum+'&relationType='+relationType+'&relation1='+relation1+'&type='+type;
+		location.href = 'strangeList?startNum='+startNum;
 	}
 </script>
 </head>
 <body>
-<input type="hidden" id="startNum"/>
-<input type="hidden" id="relationType"/>
-<input type="hidden" id="relation1"/>
+<input type="hidden" id="startNum" value="${startNum}"/>
 <div id="buttonWrap">
-	<input class="btn btn-danger buttons-excel buttons-html5"  type="button" style="width:89px !important" value="전체보기" onclick="totalData();">	
-	<input class="btn btn-info buttons-excel buttons-html5"  type="button" style="width:89px !important" value="100개 --" onclick="prevData();">
-	<input class="btn btn-success buttons-excel buttons-html5"  type="button" style="width:89px !important" value="100개 ++" onclick="nextData();">		  
+	<input class="btn btn-info buttons-excel buttons-html5"  type="button" style="width:89px !important" value="10개 --" onclick="prevData();">
+	<input class="btn btn-success buttons-excel buttons-html5"  type="button" style="width:89px !important" value="10개 ++" onclick="nextData();">		  
 </div>
 
 <div id="page-wrapper">

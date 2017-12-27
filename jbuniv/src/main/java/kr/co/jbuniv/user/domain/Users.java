@@ -54,8 +54,29 @@ public class Users {
 	private String gender;
 	private String manager;
 	private String updateBtn;
+	private String addressBack;
+	private String homeRoadAdd;
+	private String comRoadAdd;
 	
 	
+	public String getHomeRoadAdd() {
+		return homeRoadAdd;
+	}
+	public void setHomeRoadAdd(String homeRoadAdd) {
+		this.homeRoadAdd = homeRoadAdd;
+	}
+	public String getComRoadAdd() {
+		return comRoadAdd;
+	}
+	public void setComRoadAdd(String comRoadAdd) {
+		this.comRoadAdd = comRoadAdd;
+	}
+	public String getAddressBack() {
+		return addressBack;
+	}
+	public void setAddressBack(String addressBack) {
+		this.addressBack = addressBack;
+	}
 	public String getUpdateBtn() {
 		return updateBtn;
 	}

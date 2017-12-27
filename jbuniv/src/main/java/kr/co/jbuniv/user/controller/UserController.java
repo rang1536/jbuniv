@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -79,10 +80,17 @@ public class UserController {
 	@RequestMapping(value="/dbRefine", method = RequestMethod.POST)
 	public String dbRefineCtrl(Model model, 
 			@RequestParam(value="startNum")int startNum,
-			@RequestParam(value="endNum", defaultValue="0")int endNum) {
+			@RequestParam(value="endNum", defaultValue="0")int endNum,
+			@RequestParam(value="defineType", defaultValue="0")int defineType) {
 		System.out.println("시작 : "+startNum+",  끝 : "+endNum);
+		System.out.println("타입확인 : "+defineType);
 		
-		Map<String, Object> map = userService.dbRefineServ(startNum, endNum);
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// dbRefineThirdServ
+		if(defineType == 1) map = userService.dbRefineServ(startNum, endNum); //어깨동무
+		else if(defineType == 2)  map = userService.dbRefineSecondServ(startNum, endNum); //발전지원부
+		else if(defineType == 3)  map = userService.dbRefineThirdServ(startNum, endNum); //재경
 		
 		model.addAttribute("updateCount", map.get("updateCount"));
 		model.addAttribute("noUpdateCount", map.get("noUpdateCount"));
@@ -95,70 +103,30 @@ public class UserController {
 	@RequestMapping(value="/addressChange", method = RequestMethod.GET)
 	public String addChangeCtrl() {
 		/*System.out.println("유저등록");*/
+		userService.refineHpServ(100001, 400000);
 		return "apiSampleJSON";
 	}
 	
 	//strangeList
 	@RequestMapping(value="/strangeList", method = RequestMethod.GET)
-	public String strangeListCtrl() {
-		/*System.out.println("유저등록");*/
+	public String strangeListCtrl(Model model,
+			@RequestParam(value="startNum", defaultValue="1")int startNum) {
+		
+		model.addAttribute("startNum", startNum);
 		return "list/strange_list";
 	}
 	
-	@RequestMapping(value="/sample/getAddrApi.do", method = RequestMethod.POST)
-	public String addChangeCtrl(@RequestParam(value="currentPage")String currentPage,
-			@RequestParam(value="countPerPage")String countPerPage,
-			@RequestParam(value="resultType")String resultType,
-			@RequestParam(value="confmKey")String confmKey,
-			@RequestParam(value="keyword")String keyword) {
-		// OPEN API 호출 URL 정보 설정
+	//sameCheck
+	@RequestMapping(value="/sameCheck", method = RequestMethod.GET)
+	public String sameCheckCtrl(Model model,
+			@RequestParam(value="seqNo")int seqNo) {		
+		System.out.println("넘어온 시퀀스 넘버 확인 : "+seqNo);
 		
-		String apiUrl = null;
-		try {
-			apiUrl = "http://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage="+currentPage+"&countPerPage="+countPerPage+"&keyword="+URLEncoder.encode(keyword,"UTF-8")+"&confmKey="+confmKey+"&resultType="+resultType;
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		URL url = null;
-		try {
-			url = new URL(apiUrl);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Map<String, Object> map = userService.sameCheckServ(seqNo);
 		
-		BufferedReader br = null;
-    	try {
-			br = new BufferedReader(new InputStreamReader(url.openStream(),"UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	StringBuffer sb = new StringBuffer();
-    	String tempStr = null;
-    	
-    	while(true){
-    		try {
-				tempStr = br.readLine();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    		if(tempStr == null) break;
-    		sb.append(tempStr);								// 응답결과 JSON 저장
-    	}
-    	try {
-			br.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	System.out.println(sb.toString());
-    	
-		return sb.toString();
+		model.addAttribute("list", map.get("list"));
+		model.addAttribute("user", map.get("user"));
+		return "update/sameCheck";
 	}
+	
 }

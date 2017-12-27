@@ -247,16 +247,48 @@
 		JBUNIV.NEWUSER
 </select>
 
-<!-- DB정제 > 선택된 인덱스조회 -->
-<select id="selectDataSelected" parameterType="Map" resultType="kr.co.jbuniv.user.domain.TbUser">
+<!-- DB정제 > 선택된 인덱스조회(재경) -->
+<select id="selectDataSelectedInSeoul" parameterType="Map" resultType="kr.co.jbuniv.user.domain.TbUser">
 	SELECT
 		*
 	FROM
-		JBUNIV.TB_USER
+		JBUNIV.INSEOUL
 	WHERE
 		SEQ_NO &gt;= #{startNum}
 	AND
 		SEQ_NO &lt;= #{endNum}
+	AND
+		NAME IS NOT NULL
+	ORDER BY SEQ_NO
+</select>
+
+<!-- DB정제 > 선택된 인덱스조회(발전지원부) -->
+<select id="selectDataSelectedNewUser" parameterType="Map" resultType="kr.co.jbuniv.user.domain.TbUser">
+	SELECT
+		*
+	FROM
+		JBUNIV.NEWUSER2
+	WHERE
+		SEQ_NO &gt;= #{startNum}
+	AND
+		SEQ_NO &lt;= #{endNum}
+	AND
+		hp is not null
+	ORDER BY SEQ_NO
+</select>
+
+<!-- DB정제 > 선택된 인덱스조회(어깨동무 수정본) -->
+<select id="selectDataSelected" parameterType="Map" resultType="kr.co.jbuniv.user.domain.TbUser">
+	SELECT
+		*
+	FROM
+		JBUNIV.TB_USER2
+	WHERE
+		SEQ_NO &gt;= #{startNum}
+	AND
+		SEQ_NO &lt;= #{endNum}
+	AND
+		ETC2 = '통화'
 	ORDER BY SEQ_NO
 </select>
 
@@ -277,16 +309,19 @@
 </select>
 
 <!-- 전화번호 형식 일원화 작업위한 전화번호 조회 (퍼짐방지 1000단위 실행)-->
-<select id="selectHpForRefine" resultType="kr.co.jbuniv.user.domain.Users">
+<select id="selectHpForRefine" parameterType="Map" resultType="kr.co.jbuniv.user.domain.Users">
 	SELECT
 		SEQ_NO,
-		HP
+		HP,
+		MAIN_PHONE,
+		HOME_PHONE,
+		ADMISSION,
+		GRADUATED
 	FROM 
 		JBUNIV.USERS
 	WHERE
-		SEQ_NO &gt;= 100000
-	AND
-		SEQ_NO &lt;= 160000
+		ADMISSION like '__/__/____'
+	ORDER BY SEQ_NO
 </select>
 
 <!-- 0000-000-0000형식으로 하이픈 잘못 들어간 행 조회 -->
@@ -315,21 +350,132 @@
 <!-- 전화번호 일원화된 형식으로 세팅된 값 업데이트 -->
 <update id="updateHp" parameterType="kr.co.jbuniv.user.domain.Users">
 	UPDATE
-		JBUNIV.NEWUSER
+		JBUNIV.USERS
 	SET
-		HP = #{hp}
+		ADMISSION = #{admission}
+		<if test="graduated != null and graduated !=''">,GRADUATED = #{graduated}</if>
+		<if test="mainPhone != null and mainPhone !=''">,MAIN_PHONE = #{mainPhone}</if>
+		<if test="homePhone != null and homePhone !=''">,HOME_PHONE = #{homePhone}</if>
 	WHERE
 		SEQ_NO = #{seqNo}
 </update>
 
-<!-- 이상데이터 조회 -->
+<!-- 이상데이터 조회 (어깨동무 신구)-->
 <select id="selectUserStrange" parameterType="int" resultType="kr.co.jbuniv.user.domain.Users">
 	SELECT
 		*
 	FROM
-		JBUNIV.TB_USER
+		JBUNIV.TB_USER2
 	WHERE
 		SEQ_NO = #{seqNo}
 </select>
+
+<!-- 이상데이터 조회 (발전지원부) -->
+<select id="selectUserStrange2" parameterType="int" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT
+		*
+	FROM
+		JBUNIV.NEWUSER
+	WHERE
+		SEQ_NO = #{seqNo}
+</select>
+
+<!-- 이상데이터 조회 (재경인명록) -->
+<select id="selectUserStrange3" parameterType="int" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT
+		*
+	FROM
+		JBUNIV.INSEOUL
+	WHERE
+		SEQ_NO = #{seqNo}
+</select>
+
+<!-- 주소변환 > 주소,시퀀스번호 조회  -->
+<select id="selectUserAdd" parameterType="Map" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT
+		SEQ_NO,
+		HOME_ADDRESS,
+		COM_ADDRESS
+	FROM 
+		JBUNIV.USERS
+	WHERE
+		SEQ_NO &gt;= #{startNum}
+	AND
+		SEQ_NO &lt;= #{endNum}
+	AND
+		HOME_ADDRESS IS NOT NULL
+	ORDER BY SEQ_NO
+</select>
+
+<!-- 주소변환 > 주소정보 수정. -->
+<update id="updateAddToRoadAdd" parameterType="kr.co.jbuniv.user.domain.Users">
+	UPDATE
+		JBUNIV.USERS
+	SET
+		DB_UPDATE = to_char(sysdate,'YYYY-MM-DD')
+		<if test="homeRoadAdd != null and homeRoadAdd != ''">,HOME_ROADADD=#{homeRoadAdd}</if>
+		<if test="zipCode != null and zipCode != ''">,ZIPCODE=#{zipCode}</if>
+		<if test="comRoadAdd != null and comRoadAdd != ''">,COM_ROADADD=#{comRoadAdd}</if>
+		<if test="comZipCode != null and comZipCode != ''">,COM_ZIPCODE=#{comZipCode}</if>
+	WHERE
+		SEQ_NO = #{seqNo}
+</update>
+
+<!-- 데이터 삭제 -->
+<delete id="deleteData" parameterType="int">
+	DELETE
+	FROM JBUNIV.USERS
+	WHERE
+		SEQ_NO = #{seqNo}
+</delete>
+
+<!-- 원주소가 있으나 신주소로 변환되지 아니한 목록 조회 -->
+<select id="selectBlankAdd" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT
+		SEQ_NO,
+		NAME,
+		HOME_ADDRESS
+	FROM
+		JBUNIV.USERS
+	WHERE
+		HOME_ADDRESS IS NOT NULL
+	AND
+		HOME_ROADADD IS NULL
+</select>
+
+<!-- 원주소 신주소 공백에 업데이트 -->
+<update id="updateBlankRoadAdd" parameterType="kr.co.jbuniv.user.domain.Users">
+	UPDATE
+		JBUNIV.USERS
+	SET
+		HOME_ROADADD = #{homeRoadAdd}
+	WHERE
+		SEQ_NO = #{seqNo}
+</update>
+
+<!-- 원주소,상세주소 다있는 데이터 조회 -->
+<select id="selectAddNSangseAdd" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT
+		SEQ_NO,
+		NAME,
+		HOME_ADDRESS,
+		HOME_SANGSEADD
+	FROM
+		JBUNIV.USERS
+	WHERE
+		HOME_ADDRESS IS NOT NULL
+	AND
+		HOME_SANGSEADD IS NOT NULL
+</select>
+
+<!-- 원주소 상세주소와 합하기 -->
+<update id="updateAddInSangseAdd" parameterType="kr.co.jbuniv.user.domain.Users">
+	UPDATE
+		JBUNIV.USERS
+	SET
+		HOME_ADDRESS = #{homeAddress}
+	WHERE
+		SEQ_NO = #{seqNo}
+</update>
 
 </mapper>

@@ -53,8 +53,8 @@ public class UserDao {
 	}
 	
 	// 핸드폰번호 형식 일원화 > 폰번호 조회(1000건단위 퍼짐방지)
-	public List<Users> selectHpForRefine(){
-		return sqlSession.selectList("UserDao.selectHpForRefine");
+	public List<Users> selectHpForRefine(Map<String, Integer> params){
+		return sqlSession.selectList("UserDao.selectHpForRefine",params);
 	}
 	
 	// 핸드폰번호 형식 일원화 > 폰번호 조회(1000건단위 퍼짐방지)
@@ -71,18 +71,73 @@ public class UserDao {
 		return sqlSession.selectList("UserDao.selectHpIsNull");
 	}
 	
-	// DB정제 > 발전지원부 범위데이터 조회
+	// DB정제 > 어깨동무 수정본 범위데이터 조회
 	public List<TbUser> selectDataSelected(Map<String,Integer> params){
 		return sqlSession.selectList("UserDao.selectDataSelected", params);
 	}
 	
-	// DB정제 > 발전지원부 데이터 기분 동명인 검색(어깨동무)
+	// DB정제 > 어깨동무 수정본 데이터 기분 동명인 검색(어깨동무)
 	public List<Users> selectUserByNameNRel(TbUser tbUser){
 		return sqlSession.selectList("UserDao.selectUserByNameNRel", tbUser);
 	}
 	
-	// 이상데이터 조회
+	// 이상데이터 조회(어깨동무 신구)
 	public Users selectUserStrange(int seqNo) {
 		return sqlSession.selectOne("UserDao.selectUserStrange",seqNo);
+	}
+	
+	// 이상데이터 조회(발전지원부)
+	public Users selectUserStrange2(int seqNo) {
+		return sqlSession.selectOne("UserDao.selectUserStrange2",seqNo);
+	}
+	
+	// 이상데이터 조회(재경인명록)
+	public Users selectUserStrange3(int seqNo) {
+		return sqlSession.selectOne("UserDao.selectUserStrange3",seqNo);
+	}
+	
+	// DB정제 > 발전지원부 범위데이터 조회
+	public List<TbUser> selectDataSelectedNewUser(Map<String,Integer> params){
+		return sqlSession.selectList("UserDao.selectDataSelectedNewUser", params);
+	}
+	
+	// DB정제 > 재경인명록 범위데이터 조회 selectDataSelectedInSeoul
+	public List<TbUser> selectDataSelectedInSeoul(Map<String,Integer> params){
+		return sqlSession.selectList("UserDao.selectDataSelectedInSeoul", params);
+	}
+	
+	// 주소변환 > 대상 회원 주소 조회
+	public List<Users> selectUserAdd(Map<String, Integer> params){
+		return sqlSession.selectList("UserDao.selectUserAdd", params);
+	}
+	
+	// 주소변환 > 주소수정updateAddToRoadAdd
+	public int updateAddToRoadAdd(Users users) {
+		return sqlSession.update("UserDao.updateAddToRoadAdd", users);
+	}
+	
+	// 데이터삭제 
+	public int deleteData(int seqNo) {
+		return sqlSession.delete("UserDao.deleteData", seqNo);
+	}
+	
+	// 원주소가 있으나 신주소로 변환되지 아니한 목록 조회 
+	public List<Users> selectBlankAdd() {
+		return sqlSession.selectList("UserDao.selectBlankAdd");
+	}
+	
+	// 원주소 신주소 공백에 업데이트 
+	public int updateBlankRoadAdd(Users user) {
+		return sqlSession.update("UserDao.updateBlankRoadAdd", user);
+	}
+	
+	//원주소,상세주소 다있는 데이터 조회
+	public List<Users> selectAddNSangseAdd() {
+		return sqlSession.selectList("UserDao.selectAddNSangseAdd");
+	}
+	
+	//  원주소 상세주소와 합하기 
+	public int updateAddInSangseAdd(Users user) {
+		return sqlSession.update("UserDao.updateAddInSangseAdd", user);
 	}
 }

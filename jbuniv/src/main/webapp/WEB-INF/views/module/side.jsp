@@ -259,7 +259,15 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                       
+                        <li>
+                            <a href="addressChange"><i class="fa fa-edit fa-fw"></i> 주소변환</a>
+                        </li>
+                        <li>
+                            <a href="dataRefine"><i class="fa fa-edit fa-fw"></i> DB정제(+)</a>
+                        </li>
+                        <li>
+                            <a href="strangeList"><i class="fa fa-edit fa-fw"></i> 데이터 체크목록</a>
+                        </li>
                         <li>
                             <a href="addUser"><i class="fa fa-edit fa-fw"></i> 등록</a>
                         </li>
