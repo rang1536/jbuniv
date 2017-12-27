@@ -174,6 +174,15 @@
 		SEQ_NO = #{seqNo}
 </update>
 
+<!-- 회원정보수정2 -->
+<update id="updateUserRootName" parameterType="kr.co.jbuniv.user.domain.Users">
+	UPDATE JBUNIV.USERS
+	SET
+		db_update = to_char(sysdate,'YYYY-MM-DD')
+		rootname = #{rootName}		
+	WHERE
+		SEQ_NO = #{seqNo}
+</update>
 
 <!-- 카테별 단과, 대학원별 동창목록조회 -->
 <select id="selectUsersByRelType" parameterType="Map" resultType="kr.co.jbuniv.user.domain.Users">
@@ -267,7 +276,7 @@
 	SELECT
 		*
 	FROM
-		JBUNIV.NEWUSER2
+		JBUNIV.NEWUSER
 	WHERE
 		SEQ_NO &gt;= #{startNum}
 	AND

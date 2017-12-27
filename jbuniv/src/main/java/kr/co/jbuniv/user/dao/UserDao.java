@@ -140,4 +140,9 @@ public class UserDao {
 	public int updateAddInSangseAdd(Users user) {
 		return sqlSession.update("UserDao.updateAddInSangseAdd", user);
 	}
+	
+	//updateUserRootName
+	public int updateUserRootName(Users user) {
+		return sqlSession.update("UserDao.updateUserRootName", user);
+	}
 }

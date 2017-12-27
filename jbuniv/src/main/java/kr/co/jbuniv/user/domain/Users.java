@@ -57,8 +57,14 @@ public class Users {
 	private String addressBack;
 	private String homeRoadAdd;
 	private String comRoadAdd;
+	private String rootName;
 	
-	
+	public String getRootName() {
+		return rootName;
+	}
+	public void setRootName(String rootName) {
+		this.rootName = rootName;
+	}
 	public String getHomeRoadAdd() {
 		return homeRoadAdd;
 	}

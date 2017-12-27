@@ -282,10 +282,12 @@ public class UserService {
 									System.out.println("최근 통화된 자료라 수정안함.");
 									upDateResult=1;
 								}else {
-									upDateResult = userDao.updateUser(setParamForUpdate3(searchList.get(j), list.get(i)));
+									/*upDateResult = userDao.updateUser(setParamForUpdate3(searchList.get(j), list.get(i)));*/
+									upDateResult = userDao.updateUserRootName(setParamCCJ(searchList.get(j), list.get(i)));
 								}	
 							}else {
-								upDateResult = userDao.updateUser(setParamForUpdate3(searchList.get(j), list.get(i)));
+								/*upDateResult = userDao.updateUser(setParamForUpdate3(searchList.get(j), list.get(i)));*/
+								upDateResult = userDao.updateUserRootName(setParamCCJ(searchList.get(j), list.get(i)));
 							}						
 							
 							if(upDateResult > 0) {
@@ -312,10 +314,12 @@ public class UserService {
 									System.out.println("최근 통화된 자료라 수정안함.");
 									upDateResult=1;
 								}else {
-									upDateResult = userDao.updateUser(setParamForUpdate3(searchList.get(j), list.get(i)));
+									/*upDateResult = userDao.updateUser(setParamForUpdate3(searchList.get(j), list.get(i)));*/
+									upDateResult = userDao.updateUserRootName(setParamCCJ(searchList.get(j), list.get(i)));
 								}	
 							}else {
-								upDateResult = userDao.updateUser(setParamForUpdate3(searchList.get(j), list.get(i)));
+								/*upDateResult = userDao.updateUser(setParamForUpdate3(searchList.get(j), list.get(i)));*/
+								upDateResult = userDao.updateUserRootName(setParamCCJ(searchList.get(j), list.get(i)));
 							}		
 							
 							
@@ -362,10 +366,12 @@ public class UserService {
 							System.out.println("최근 통화된 자료라 수정안함.");
 							upDateResult=1;
 						}else {
-							upDateResult = userDao.updateUser(setParamForUpdate3(waitList.get(0), list.get(i)));
+							/*upDateResult = userDao.updateUser(setParamForUpdate3(waitList.get(0), list.get(i)));*/
+							upDateResult = userDao.updateUserRootName(setParamCCJ(waitList.get(0), list.get(i)));
 						}
 					}else {
-						upDateResult = userDao.updateUser(setParamForUpdate3(waitList.get(0), list.get(i)));
+						/*upDateResult = userDao.updateUser(setParamForUpdate3(waitList.get(0), list.get(i)));*/
+						upDateResult = userDao.updateUserRootName(setParamCCJ(waitList.get(0), list.get(i)));
 					}
 					
 					if(upDateResult > 0) {
@@ -407,10 +413,12 @@ public class UserService {
 						System.out.println("최근통화된 자료라 수정안함.");
 						upDateResult=1;
 					}else {
-						upDateResult = userDao.updateUser(setParamForUpdate3(searchList.get(0), list.get(i)));
+						/*upDateResult = userDao.updateUser(setParamForUpdate3(searchList.get(0), list.get(i)));*/
+						upDateResult = userDao.updateUserRootName(setParamCCJ(searchList.get(0), list.get(i)));
 					}
 				}else {
-					upDateResult = userDao.updateUser(setParamForUpdate3(searchList.get(0), list.get(i)));
+					/*upDateResult = userDao.updateUser(setParamForUpdate3(searchList.get(0), list.get(i)));*/
+					upDateResult = userDao.updateUserRootName(setParamCCJ(searchList.get(0), list.get(i)));
 				}				
 				if(upDateResult > 0) updateCount++;
 			} 
@@ -611,10 +619,12 @@ public class UserService {
 									System.out.println("최근 통화된 자료라 수정안함.");
 									upDateResult = 1;
 								}else {
-									upDateResult = userDao.updateUser(setParamForUpdate2(searchList.get(j), list.get(i)));
+									/*upDateResult = userDao.updateUser(setParamForUpdate2(searchList.get(j), list.get(i)));*/
+									upDateResult = userDao.updateUserRootName(setParamCCB(searchList.get(j), list.get(i)));
 								}	
 							}else {
-								upDateResult = userDao.updateUser(setParamForUpdate2(searchList.get(j), list.get(i)));
+								/*upDateResult = userDao.updateUser(setParamForUpdate2(searchList.get(j), list.get(i)));*/
+								upDateResult = userDao.updateUserRootName(setParamCCB(searchList.get(j), list.get(i)));
 							}						
 							
 							if(upDateResult > 0) {
@@ -641,10 +651,12 @@ public class UserService {
 									/*upDateResult = userDao.updateUser(setParamForUpdate2(searchList.get(j), list.get(i)));*/
 									System.out.println("최근 통화된 자료라 수정안함.");
 								}else {
-									upDateResult = userDao.updateUser(setParamForUpdate2(searchList.get(j), list.get(i)));
+									/*upDateResult = userDao.updateUser(setParamForUpdate2(searchList.get(j), list.get(i)));*/
+									upDateResult = userDao.updateUserRootName(setParamCCB(searchList.get(j), list.get(i)));
 								}	
 							}else {
-								upDateResult = userDao.updateUser(setParamForUpdate2(searchList.get(j), list.get(i)));
+								/*upDateResult = userDao.updateUser(setParamForUpdate2(searchList.get(j), list.get(i)));*/
+								upDateResult = userDao.updateUserRootName(setParamCCB(searchList.get(j), list.get(i)));
 							}		
 							
 							
@@ -684,7 +696,8 @@ public class UserService {
 				//다른 필드가 일치하나 학과 혹은 졸업일 혹은 둘다 다를때 확인요망 리스트
 				if(waitList.size() == 1 && checkStrange ==0) { //로직실행후 졸업,학과 일치자가 1개일때 동일인으로 인정. 업데이트
 					System.out.println("대기 row 1개~!! 업데이트 처리!!");
-					upDateResult = userDao.updateUser(setParamForUpdate2(waitList.get(0), list.get(i)));
+					/*upDateResult = userDao.updateUser(setParamForUpdate2(waitList.get(0), list.get(i)));*/
+					upDateResult = userDao.updateUserRootName(setParamCCB(waitList.get(0), list.get(i)));
 					if(upDateResult > 0) {
 						updateCount++;
 					}	
@@ -714,10 +727,12 @@ public class UserService {
 						System.out.println("최근 통화된 자료라 수정안함.");
 						upDateResult++;
 					}else {
-						upDateResult = userDao.updateUser(setParamForUpdate2(searchList.get(0), list.get(i)));
+						/*upDateResult = userDao.updateUser(setParamForUpdate2(searchList.get(0), list.get(i)));*/
+						upDateResult = userDao.updateUserRootName(setParamCCB(searchList.get(0), list.get(i)));
 					}	
 				}else {
-					upDateResult = userDao.updateUser(setParamForUpdate2(searchList.get(0), list.get(i)));
+					/*upDateResult = userDao.updateUser(setParamForUpdate2(searchList.get(0), list.get(i)));*/
+					upDateResult = userDao.updateUserRootName(setParamCCB(searchList.get(0), list.get(i)));
 				}
 				
 				if(upDateResult > 0) updateCount++;
@@ -1062,6 +1077,39 @@ public class UserService {
 		searchList.setZipCode(setUpdateData2(list.getZipCode(), searchList.getZipCode()));
 		searchList.setMemo(searchList.getMemo()+" 재경");
 		searchList.setComAddress(setUpdateData2(list.getComAddress(), searchList.getComAddress()));
+		return searchList;
+	}
+	
+	// 출처추가(재경)
+	public Users setParamCCJ(Users searchList, TbUser list) {
+		if(searchList.getRootName() != null) {
+			searchList.setRootName(searchList.getRootName()+" 재경");
+		}else {
+			searchList.setRootName("재경");
+		}
+		
+		return searchList;
+	}
+	
+	// 출처추가(발전지원부)
+	public Users setParamCCB(Users searchList, TbUser list) {
+		if(searchList.getRootName() != null) {
+			searchList.setRootName(searchList.getRootName()+" 발전");
+		}else {
+			searchList.setRootName("발전");
+		}
+		
+		return searchList;
+	}
+	
+	// 출처추가(단대,기타)
+	public Users setParamCCE(Users searchList, TbUser list) {
+		if(searchList.getRootName() != null) {
+			searchList.setRootName(searchList.getRootName()+" 단대외기타");
+		}else {
+			searchList.setRootName("단대외기타");
+		}
+		
 		return searchList;
 	}
 	
