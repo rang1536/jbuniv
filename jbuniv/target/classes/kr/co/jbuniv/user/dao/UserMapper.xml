@@ -178,7 +178,7 @@
 <update id="updateUserRootName" parameterType="kr.co.jbuniv.user.domain.Users">
 	UPDATE JBUNIV.USERS
 	SET
-		db_update = to_char(sysdate,'YYYY-MM-DD')
+		db_update = to_char(sysdate,'YYYY-MM-DD'),
 		rootname = #{rootName}		
 	WHERE
 		SEQ_NO = #{seqNo}
