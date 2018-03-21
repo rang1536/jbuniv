@@ -49,10 +49,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">JB-UNIV VER 1.0</a>
+                <a class="navbar-brand" href="#" style="margin-right:75px;">JB-UNIV VER 1.0</a>
+                <a class="navbar-brand" href="#">JB-UNIV VER 3.0</a>
+                <a class="navbar-brand" href="#">JB-UNIV VER 2.0</a>
             </div>
             <!-- /.navbar-header -->
 
+			
+			
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">

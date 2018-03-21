@@ -36,7 +36,7 @@ public class UserRestController {
 			@RequestParam(value="relation1")String relation1,
 			@RequestParam(value="startNum", defaultValue="0")int startNum,
 			@RequestParam(value="type", defaultValue="none")String type){
-		System.out.println("AJAX 넘어온 값 확인 : "+relationType+", "+relation1+", 시작인덱스 : "+startNum); 
+		/*System.out.println("AJAX 넘어온 값 확인 : "+relationType+", "+relation1+", 시작인덱스 : "+startNum); */
 		List<Users> userList = userService.readUsersByRelTypeServ(relationType, relation1, startNum, type);
 		
 		Map<String, Object> map = new HashMap<String, Object>();

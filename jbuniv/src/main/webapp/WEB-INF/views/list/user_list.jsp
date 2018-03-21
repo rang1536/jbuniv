@@ -45,7 +45,7 @@
           serverSide: false,
           searching: true,
           //lengthMenu : [ [ 3, 5, 10, -1 ], [ 3, 5, 10, "All" ] ],
-          pageLength: 10,
+          pageLength: 20,
           bPaginate: true,
           bLengthChange: false,
           bAutoWidth: false,

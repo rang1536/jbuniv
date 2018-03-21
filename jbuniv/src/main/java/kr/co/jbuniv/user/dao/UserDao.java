@@ -145,4 +145,30 @@ public class UserDao {
 	public int updateUserRootName(Users user) {
 		return sqlSession.update("UserDao.updateUserRootName", user);
 	}
+	
+	//수정된 데이터 조회(직업, 부서, 직책)
+	public List<Users> selectUserDataUpdateAll(){
+		return sqlSession.selectList("UserDao.selectUserDataUpdateAll");
+	}
+	
+	//수정된 데이터 덮어쓰기(수정)
+	public int updateUserOriginSame(Users user) {
+		return sqlSession.update("UserDao.updateUserOriginSame", user);
+	}
+	
+	//학과 제공데이터 수정
+	public int updateSameDataByUserNew(Users user) {
+		return sqlSession.update("UserDao.updateSameDataByUserNew", user);
+	}
+	
+	//추가데이터 기반 일치 데이터 조회
+	public List<Users> selectSameDataByUserNew(Users user){
+		return sqlSession.selectList("UserDao.selectSameDataByUserNew", user);
+	}
+	
+	//추가데이터 조회
+	public List<Users> selectUserAddDataAll(){
+		return sqlSession.selectList("UserDao.selectUserAddDataAll");
+	}
+	
 }

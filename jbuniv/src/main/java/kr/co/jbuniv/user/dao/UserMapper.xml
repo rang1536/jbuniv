@@ -487,4 +487,71 @@
 		SEQ_NO = #{seqNo}
 </update>
 
+<!-- 수정된 데이터 조회 -->
+<select id="selectUserDataUpdateAll" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT *
+	FROM JBUNIV.USER_UPDATE
+	WHERE COMPANY IS NOT NULL
+</select>
+
+<!-- 수정데이터와 동일한 원본데이터 조회  -->
+<select id="selectUserOriginSame" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT *
+	FROM JBUNIV.USERS
+	WHERE SEQ_NO = #{seqNo}
+</select>
+
+<!-- 동일데이터 수정 -->
+<update id="updateUserOriginSame" parameterType="kr.co.jbuniv.user.domain.Users">
+	UPDATE JBUNIV.USERS
+	SET COMPANY = #{company}
+	<if test="department != null and department != ''">,DEPARTMENT=#{department}</if>
+	<if test="position != null and position != ''">,POSITION=#{position}</if>
+	WHERE SEQ_NO = #{seqNo}
+</update>
+
+<!-- 추가로 받은 데이터 조회 -->
+<select id="selectUserAddDataAll" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT *
+	FROM JBUNIV.USER_UPDATE2
+</select>
+
+<!-- 추가데이터 기반 일치 데이터 조회 -->
+<select id="selectSameDataByUserNew" parameterType="kr.co.jbuniv.user.domain.Users" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT *
+	FROM JBUNIV.USERS
+	WHERE NAME=#{name}
+	AND RELATION_1 = #{relation1}
+	AND ADMISSION like #{admission}||'%'
+</select>
+
+<update id="updateSameDataByUserNew" parameterType="kr.co.jbuniv.user.domain.Users">
+	UPDATE JBUNIV.USER_NEW
+	SET NAME=#{name}
+	<if test="company != null and company != ''">,COMPANY=#{company}</if>
+	<if test="department != null and department != ''">,DEPARTMENT=#{department}</if>
+	<if test="position != null and position != ''">,POSITION=#{position}</if>
+	<if test="mainPhone != null and mainPhone != ''">,MAIN_PHONE=#{mainPhone}</if>
+	<if test="zipCode != null and zipCode != ''">,ZIPCODE=#{zipCode}</if>
+	<if test="homeRoadAdd != null and homeRoadAdd != ''">,HOME_ADDRESS=#{homeRoadAdd}</if>
+	<if test="homePhone != null and homePhone != ''">,HOME_PHONE=#{homePhone}</if>
+	<if test="email != null and email != ''">,EMAIL=#{email}</if>
+	WHERE SEQ_NO = #{seqNo}
+	
+</update>
+
+<!-- <update id="updateSameDataByUserNew2" parameterType="kr.co.jbuniv.user.domain.Users">
+	UPDATE JBUNIV.USER_NEW
+	SET NAME=#{name}
+	<if test="company != null and company != ''">,COMPANY=#{company}</if>
+	<if test="position != null and position != ''">,POSITION=#{position}</if>
+	<if test="mainPhone != null and mainPhone != ''">,MAIN_PHONE=#{mainPhone}</if>
+	<if test="zipCode != null and zipCode != ''">,ZIPCODE=#{zipCode}</if>
+	<if test="homeRoadAdd != null and homeRoadAdd != ''">,HOME_ADDRESS=#{homeRoadAdd}</if>
+	<if test="homePhone != null and homePhone != ''">,HOME_PHONE=#{homePhone}</if>
+	<if test="email != null and email != ''">,EMAIL=#{email}</if>
+	WHERE SEQ_NO = #{seqNo}
+	
+</update> -->
+
 </mapper>

@@ -1432,15 +1432,18 @@ public class UserService {
 		 */
 		
 		// 발전지원부(체크리스트)
-		int[] data = {
+		/*int[] data = {
 				1010, 1117, 1203, 1212, 1543, 2376, 2474, 2482, 4090, 4091, 12459, 12708, 13513, 13514, 14771, 18255, 22882, 23021, 23571, 25100, 34399, 34798, 34808, 35064, 37496, 38961, 46881, 46882, 49700,
 				50890, 56738, 57133, 62449, 63815, 63816, 73047, 73748, 74432, 78773, 89926, 90511, 91385, 91447, 102596, 104996, 106826, 112133, 112534, 119186, 119273, 119340, 119346, 119357, 119398, 119435
-		};
+		};*/
 		
 		/* 재경인명록
 		 * int[] data = {
 				80077, 80504, 81181, 85023, 85180, 85521, 85714, 85774, 86495, 86803, 86869, 86958, 87084, 87148, 87292, 87603, 88188, 88416, 88478, 88507, 88989, 89095, 89284, 95418, 98343, 98988, 99069, 99735, 99842, 106282, 107278, 107359, 107459, 107638, 108416, 108420, 108432, 108605, 108606, 108635, 108636, 108673, 108675, 108705, 108735, 109588, 109619, 109622, 109627, 109628, 109648, 109719, 109778, 109960, 110054, 110066, 110069, 110071, 110331, 110345, 110354, 110356, 110388, 110462, 110477, 110478, 110515, 110523, 110531, 110573, 110588, 110603, 110626, 110673, 110805, 110851, 110852, 110963, 110968, 110984, 111001, 111021, 111038, 112117, 112122, 112123, 112129, 112131, 112134, 112147, 112168, 112174, 112184, 112187, 112189, 112240, 112243, 112248, 112251, 112254, 112271, 112288, 112292, 112309, 112311, 112334, 112338, 112368, 112369, 112378, 112506, 112509, 113686, 113701, 113722, 113725, 113728, 113732, 113750, 113754, 113862, 114026, 115085, 115086
 		};*/
+		
+		//행정실 데이터
+		int[] data = {};
 		
 		int dataLength = data.length;
 		int endNum = startNum + 9;
@@ -1633,5 +1636,219 @@ public class UserService {
 	// 전화번호 날짜 형식 통일
 	public void refineHpNDateServ() {
 		
+	}
+	
+	//직업, 부서등 업데이트
+	public void refineDataServ() {
+		// 수정데이터 조회
+		List<Users> updateList = userDao.selectUserDataUpdateAll();
+		
+		// 원본데이터 조회(직업정보외에 바뀐게 없음. 일괄 수정)
+		int success=0;
+		int fail = 0;
+		
+		for(int i=0; i<updateList.size(); i++) {
+			int result = userDao.updateUserOriginSame(updateList.get(i));
+			
+			if(result == 0) {
+				System.out.println(i+" 번째 수정실패~!!");
+				fail++;
+			}
+			else if(result > 0) {
+				System.out.println(i+" 번째 수정성공~!!");
+				success++;
+			}
+		}
+		
+		System.out.println("********************");
+		System.out.println("총건수 : "+updateList.size());
+		System.out.println("성공 : "+success+" 건");
+		System.out.println("실패 : "+fail+" 건");
+		System.out.println("********************");
+	}
+	
+	//학교추가 데이터에 졸업일 있는 상태에 보존데이터 넣기
+	public void refineDataLastestServ() {
+		// 학교에서 받은 데이터 조회
+		List<Users> newList = userDao.selectUserAddDataAll();
+		
+		// 조회된 데이터의 단대, 입학일, 이름으로 해당 데이터 조회하고 1개면 수정. 2개이상일 경우 이상데이터로 추출 수정프로그램에서 수동으로 수정가능하게 조치
+		// 해당 배열의 시퀀스넘버는 북대 행정실에서 새로 넘겨받은 자료의 시퀀스넘버임.
+		List<Integer> noData = new ArrayList<Integer>(); //검색데이터 없을때
+		List<Integer> sameData = new ArrayList<Integer>(); //2개이상 검색 되서 세부 비교에서 정확하게 지목이 안될때 추가
+		int success = 0; //수정된 건수
+		int fail = 0; //실패한 건수 - 검색데이터 없거나 2개이상검색된 후 수정 안된 사례
+		int upRes = 0;
+		int sameCnt = 0;
+		List<Users> waitData = new ArrayList<Users>(); //일치항목있어 수정대기중인 데이터, 원본데이터 시퀀스넘버임
+		
+		for(int i=0; i<newList.size(); i++) {
+			System.out.println("*************************************************");
+			System.out.println(i+" 번째 검색중.........");
+			
+			/*if(newList.get(i).getRelation1().equals("인문과학대학")) {
+				newList.get(i).setRelation1("인문대학");
+			}else if(newList.get(i).getRelation1().equals("문과대학")) {
+				newList.get(i).setRelation1("인문대학");
+			}else if(newList.get(i).getRelation1().equals("이과대학")) {
+				newList.get(i).setRelation1("자연과학대학");
+			}else if(newList.get(i).getRelation1().equals("법정대학")) {
+				if(newList.get(i).getRelation2().equals("정치외교학") || newList.get(i).getRelation2().equals("행정학")) {
+					newList.get(i).setRelation1("사회과학대학");
+				}else {
+					newList.get(i).setRelation1("법과대학");
+				}				
+			}else if(newList.get(i).getRelation1().equals("농과대학")) {
+				newList.get(i).setRelation1("농업생명과학대학");
+			}else if(newList.get(i).getRelation1().equals("산업보건대학원")) {
+				newList.get(i).setRelation1("보건대학원");
+			}else if(newList.get(i).getRelation1().equals("문리과대학")) {
+				if(newList.get(i).getRelation2().equals("물리학과") || newList.get(i).getRelation2().equals("화학과") || newList.get(i).getRelation2().equals("생물학과")) {
+					newList.get(i).setRelation1("자연과학대학");
+				}else {
+					newList.get(i).setRelation1("인문대학");
+				}
+				
+			}*/
+			newList.get(i).setAdmission(newList.get(i).getAdmission().substring(0, 4));	//입학일세팅.
+			
+			List<Users> originList = userDao.selectSameDataByUserNew(newList.get(i));
+			System.out.println(originList.size()+" 개 검색됨!!");
+			
+			if(originList.size() == 0) {
+				System.out.println("검색결과 없음!!");
+				noData.add(newList.get(i).getSeqNo()); //검색데이터 없음 > 시퀀스 배열에 추가
+				fail++;
+			}else if(originList.size() == 1){
+				System.out.println("1개 데이터 검색으로 수정처리중....");
+				originList.get(0).setSeqNo(newList.get(i).getSeqNo()); //user_new 의 시퀀스번호를 덧씌운다
+				upRes = userDao.updateSameDataByUserNew(originList.get(0));
+				
+				if(upRes == 0) {
+					System.out.println("수정실패~!!");
+					fail++;
+				}else if(upRes > 0 ) {
+					System.out.println("수정완료~!!");
+					success++;
+					upRes = 0;
+				}
+			}else if(originList.size() > 1) {
+				
+				for(int j=0; j<originList.size(); j++) {
+					//입학일 비교
+					/*String newAdmission = "";
+					if(newList.get(i).getAdmission().length() == 9) {
+						newAdmission = newList.get(i).getAdmission().substring(0, 4);
+					}else if(newList.get(i).getAdmission().length() == 10) {
+						newAdmission = newList.get(i).getAdmission().substring(6, newList.get(i).getAdmission().length());
+					}
+					if(originList.get(j).getAdmission() != null && originList.get(j).getAdmission().length() > 4) { //입학일 형식 YYYY로 맞추기 위해 확인
+						if(originList.get(j).getAdmission().substring(0, 4).equals(newAdmission)) { //입학일이 같을때
+							System.out.println(j+" 번째 데이터 입학년도 일치");
+							sameCnt++;
+							
+						}else { //입학년도 다를때
+							System.out.println(j+" 번째 데이터 입학년도 불일치");
+						}
+					}else if(originList.get(j).getAdmission() != null && originList.get(j).getAdmission().length() == 4) { //입학년도 4글자 YYYY형식일때
+						if(originList.get(j).getAdmission().substring(0, originList.get(j).getAdmission().length()).equals(newList.get(i).getAdmission().substring(0, 4))) { //입학일이 같을때
+							System.out.println(j+" 번째 데이터 입학년도 일치");
+							sameCnt++;
+							
+						}else { //입학년도 다를때
+							System.out.println(j+" 번째 데이터 입학년도 불일치");
+						}
+					}*/
+					
+					//졸업일 비교
+					/*String newGraduated = newList.get(i).getGraduated().substring(0,4);
+					if(newList.get(i).getGraduated().length() == 10) {
+						newGraduated = newList.get(i).getGraduated().substring(6, newList.get(i).getGraduated().length());
+					}*/
+					
+					if(originList.get(j).getGraduated() != null && originList.get(j).getGraduated().length() > 4) { //졸업일 형식 YYYY로 맞추기 위해 확인
+						if(originList.get(j).getGraduated().substring(0, 4).equals(newList.get(i).getGraduated().substring(0, 4))) { //졸업일이 같을때
+							System.out.println(j+" 번째 데이터 졸업년도 일치");
+							sameCnt++;
+							
+						}else { //입학년도 다를때
+							System.out.println(j+" 번째 데이터 졸업년도 불일치");
+						}
+					}else if(originList.get(j).getGraduated() != null && originList.get(j).getGraduated().length() == 4) { //졸업년도 4글자 YYYY형식일때
+						if(originList.get(j).getGraduated().equals(newList.get(i).getGraduated().substring(0, 4))) { //졸업일이 같을때
+							System.out.println(j+" 번째 데이터 졸업년도 일치");
+							sameCnt++;
+							
+						}else { //입학년도 다를때
+							System.out.println(j+" 번째 데이터 졸업년도 불일치");
+						}
+					}else if(originList.get(j).getGraduated() != null && originList.get(j).getGraduated().length() == 2) { //졸업년도 4글자 YYYY형식일때
+						if(("19"+originList.get(j).getGraduated()).equals(newList.get(i).getGraduated().substring(0, 4))) { //졸업일이 같을때
+							System.out.println(j+" 번째 데이터 졸업년도 일치");
+							sameCnt++;
+							
+						}else { //입학년도 다를때
+							System.out.println(j+" 번째 데이터 졸업년도 불일치");
+						}
+					}
+					
+					//학과 비교
+					if(originList.get(j).getRelation2() != null && originList.get(j).getRelation2().contains(newList.get(i).getRelation2())) {
+						System.out.println(j+" 번째 데이터 학과 일치");
+						sameCnt++;
+	
+					}else if(originList.get(j).getRelation2() != null && !originList.get(j).getRelation2().contains(newList.get(i).getRelation2().substring(0,2))) {
+						System.out.println(j+" 번째 데이터 학과 불일치");
+					}
+					
+					if(sameCnt > 0) {
+						System.out.println(sameCnt+" 개 항목 일치로 대기목록에 추가~!!");
+						/*originList.get(j).setSeqNo(newList.get(i).getSeqNo());*/
+						waitData.add(originList.get(j));
+					}else if(sameCnt == 0) {
+						System.out.println("일치항목이 없어 처리하지 않음~!!");
+					}
+					sameCnt = 0;
+				} //for문 끝
+				
+				//데이터 일치하는 배열 갯수 확인 해서 수정 혹은 실패목록으로 할당
+				if(waitData.size() == 1) { //일치데이터 있고 그 데이터가 1개일때 수정처리!
+					waitData.get(0).setSeqNo(newList.get(i).getSeqNo());
+					upRes = userDao.updateSameDataByUserNew(waitData.get(0));
+					
+					if(upRes == 0) {
+						System.out.println("수정실패~!!");
+						fail++;
+					}else if(upRes > 0 ) {
+						System.out.println("수정완료~!!");
+						success++;
+						upRes = 0;
+						waitData = new ArrayList<Users>();
+					}
+				}else if(waitData.size() == 0) { //일치데이터가 없을때
+					System.out.println("일치하는 데이터가 없음.. 목록에 추가~!!");
+					fail++;
+					noData.add(newList.get(i).getSeqNo());
+					
+				}else if(waitData.size() > 1) { //일치데이터가 다수일때
+					System.out.println("일치하는 데이터가 다수임.. 목록에 추가~!!");
+					fail++;
+					sameData.add(newList.get(i).getSeqNo());
+					waitData = new ArrayList<Users>();
+				}
+			}
+			
+		} //for문 끝
+		
+		//전체결과 출력
+		System.out.println("#################################################");
+		System.out.println("중복데이터 : "+sameData);
+		System.out.println("없는데이터 : "+noData);
+		System.out.println("총 조회 데이터수 : "+newList.size());
+		System.out.println("성공건수 : "+success);
+		System.out.println("실패건수 : "+fail);
+		System.out.println("일치데이터 없음 : "+noData.size());
+		System.out.println("중복데이터 : "+sameData.size());
+		System.out.println("#################################################");
 	}
 }
