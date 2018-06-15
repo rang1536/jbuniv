@@ -427,6 +427,16 @@
     <!-- Custom Theme JavaScript -->
     <script src="resources/dist/js/sb-admin-2.js"></script>
 
+	<script>
+	$(window).bind("pageshow", function(event) {
+	    if (event.originalEvent.persisted) {
+	    	var win = window.open('', '_self'); 
+	    	win.close();
+	    	return false;
+
+	    }
+	});
+	</script>
 </body>
 
 </html>

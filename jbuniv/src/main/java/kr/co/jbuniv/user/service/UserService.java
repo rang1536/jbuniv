@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import kr.co.jbuniv.user.dao.UserDao;
 import kr.co.jbuniv.user.domain.NewUser;
 import kr.co.jbuniv.user.domain.TbUser;
+import kr.co.jbuniv.user.domain.UserGrade;
+import kr.co.jbuniv.user.domain.UserLastest;
 import kr.co.jbuniv.user.domain.Users;
 
 @Service
@@ -1443,7 +1445,7 @@ public class UserService {
 		};*/
 		
 		//행정실 데이터
-		int[] data = {};
+		int[] data = {26115, 7387, 12826, 14511, 39728, 43103, 59711, 86381, 93558, 152429, 152674, 154271, 101541, 100549, 101878, 101880, 103342, 102920, 103948, 103039, 102601, 103574, 103590, 103139, 102759, 103235, 103678, 102419, 102849, 343, 344, 161, 162, 1905, 2306, 5250, 5268, 5510, 5526, 5546, 4801, 4337, 4905, 6102, 6364, 6635, 6689, 6692, 6693, 6725, 6732, 6799, 6818, 6904, 7283, 7189, 5590, 5863, 5872, 5896, 5905, 5975, 6547, 6002, 6553, 6563, 6309, 6327, 5779, 7953, 8694, 8911, 8227, 7528, 7540, 7549, 7819, 8059, 7622, 9733, 9734, 10770, 11107, 11027, 11036, 10117, 9262, 9524, 9824, 9833, 9686, 9687, 9690, 11760, 12360, 12447, 12463, 12674, 12690, 12712, 12716, 12727, 11552, 11573, 11831, 11633, 11906, 12177, 11440, 13247, 13788, 13536, 13838, 13856, 14453, 14454, 14378, 13305, 13554, 12928, 13708, 13717, 13004, 14792, 15076, 15412, 15802, 15909, 16079, 16087, 16096, 16232, 16124, 16133, 16254, 14527, 15136, 15445, 15526, 14729, 15385, 15390, 17219, 17550, 17764, 17785, 17810, 17908, 17829, 18078, 17883, 18117, 16450, 16457, 17066, 16815, 16568, 16582, 17182, 18768, 19777, 19861, 19862, 20138, 20153, 18161, 18594, 18340, 18414, 20806, 21797, 22070, 21842, 21957, 20544, 21134, 20302, 20763, 21041, 20470, 20478, 22919, 22450, 23493, 23807, 22472, 23012, 22186, 22502, 22511, 22514, 22797, 22820, 23209, 26066, 26070, 26072, 26076, 24124, 24398, 24411, 24413, 24184, 24787, 25099, 26614, 26627, 27174, 27218, 27288, 27879, 26420, 26946, 26469, 26480, 26810, 27076, 27077, 27092, 26276, 27106, 26859, 28255, 29616, 29917, 28496, 28808, 28530, 29165, 104280, 104893, 106085, 104358, 105809, 104067, 105820, 104071, 104227, 105931, 104232, 31103, 31444, 29959, 30465, 30571, 30158, 31898, 32656, 31923, 32728, 32863, 32859, 33160, 33261, 32269, 32515, 32516, 32524, 32280, 32061, 32065, 32564, 32084, 32572, 31839, 32608, 32375, 32636, 33704, 33934, 33944, 34188, 34531, 34486, 34487, 34490, 33327, 33331, 33364, 33372, 33381, 33601, 34882, 35605, 35134, 35634, 35745, 35722, 36039, 34689, 34737, 35218, 35066, 35540, 37718, 37545, 37626, 37633, 36453, 36551, 36576, 37147, 39008, 38468, 39346, 39347, 39361, 39522, 39688, 38784, 38004, 38034, 38388, 38095, 38411, 39987, 39994, 40303, 40826, 40059, 40095, 42162, 42495, 42623, 42661, 42779, 42096, 42382, 44164, 44323, 43121, 43685, 44010, 44048, 44121, 45890, 45920, 46267, 46270, 46488, 45143, 45723, 45460, 45169, 47791, 47803, 48103, 48140, 47059, 47121, 47710, 47168, 50790, 50761, 49241, 49408, 49744, 50045, 49066, 50170, 52453, 52502, 52775, 52842, 52026, 51766, 51788, 51794, 51809, 51837, 54666, 54458, 56281, 56088, 56255, 106524, 107184, 108400, 106701, 106499, 57543, 57609, 57941, 58004, 57779, 56997, 57011, 57015, 57283, 57023, 56607, 56621, 58921, 58923, 58933, 59206, 59207, 59219, 59268, 59282, 59322, 59551, 59555, 59507, 58130, 58969, 58168, 58997, 59035, 58584, 59078, 58317, 60286, 60881, 60952, 60976, 61160, 59763, 60632, 60100, 59897, 60401, 59944, 60722, 62632, 62015, 62649, 62701, 62892, 62229, 62282, 63552, 63821, 64375, 63331, 63632, 63646, 63477, 64041, 66397, 65508, 65444, 66737, 66841, 67458, 69551, 69762, 68814, 69114, 71004, 71056, 71277, 71281, 71285, 70032, 70376, 70390, 73679, 73465, 73507, 75782, 75812, 77938, 79869, 80146, 80154, 80614, 80569, 80665, 81006, 81042, 80798, 79673, 80039, 80082, 80350, 81362, 81369, 81374, 81886, 82148, 82186, 82205, 82226, 82280, 82373, 82412, 82578, 82455, 82602, 82655, 82762, 82805, 82548, 82566, 82822, 81410, 81160, 81727, 81729, 81172, 81174, 81180, 81467, 81470, 81749, 81478, 81488, 81490, 81760, 82050, 81251, 81503, 81521, 81269, 81291, 81547, 81601, 81602, 81603, 81344, 81356, 81615, 108907, 110341, 108992, 109530, 109531, 109184, 110141, 109233, 108874, 108878, 83123, 83398, 83420, 83749, 84068, 84083, 84086, 84142, 84190, 84198, 84497, 84533, 84546, 84332, 84552, 84566, 84448, 84593, 84386, 84466, 84611, 83166, 83167, 82926, 83194, 83206, 83481, 82951, 83214, 83215, 83224, 83234, 83241, 82970, 82972, 82979, 83244, 83577, 83860, 83879, 83025, 83027, 83303, 83604, 83605, 83607, 83334, 83335, 83340, 83629, 83361, 83700, 83955, 83090, 83710, 83714, 83717, 83718, 84868, 84870, 85715, 85717, 85201, 85463, 85731, 85738, 85794, 85797, 85816, 85829, 85897, 85940, 86222, 86226, 86249, 86043, 86335, 86190, 86209, 86107, 84952, 85479, 85242, 85259, 85539, 85033, 85038, 85039, 85041, 85315, 85373, 85091, 84806, 85408, 85426, 85701, 86878, 86879, 86652, 86921, 87452, 87460, 87472, 87479, 87578, 87900, 87919, 87934, 87949, 87725, 87726, 87986, 87996, 87742, 87744, 87762, 87766, 87774, 87858, 86407, 86961, 86969, 86742, 86745, 86478, 87295, 86510, 86772, 87354, 86516, 86533, 87391, 87397, 86549, 86568, 87128, 88908, 88126, 89051, 90606, 91165, 90766, 90778, 91887, 92785, 93462, 93208, 93849, 94477, 94894, 95067, 94281, 96792, 96944, 96601, 97730, 97754, 98330, 98378, 98398, 98441, 98560, 98104, 98199, 110454, 110774, 110791, 99410, 110634, 99216, 111690, 112571, 112610, 111775, 113805, 113398, 113448, 113478, 113493, 114985, 114774, 117335, 117338, 117767, 117842, 117558, 117699, 118164, 118721, 118357, 117959, 118022, 118049, 118059, 118937, 118075, 118488, 118500, 118510, 119990, 120028, 120726, 120393, 122822, 121918, 122674, 124262, 122895, 122937, 123369, 123057, 123061, 123082, 125510, 125537, 125564, 126097, 125658, 126128, 125232, 125239, 125266, 125708, 125760, 125763, 124972, 125000, 125034, 127511, 127976, 128060, 126545, 127639, 127656, 128109, 128110, 127752, 126205, 126224, 127276, 127290, 127811, 126822, 126823, 127457, 127458, 127893, 127934, 129562, 129128, 130166, 130176, 128565, 129797, 129805, 129827, 128218, 128839, 129931, 129932, 129476, 129485, 129494, 130015, 131251, 131870, 131926, 131944, 130814, 131976, 130840, 130841, 130238, 130899, 130911, 130914, 131545, 132079, 132092, 132107, 132121, 132144, 130473, 130503, 133197, 133205, 133221, 133704, 133761, 133328, 132867, 133873, 133887, 132418, 133900, 133905, 133521, 132512, 133556, 134026, 134033, 133617, 133631, 134081, 133186, 134698, 135258, 135292, 134321, 135927, 134540, 134974, 134547, 134579, 134584, 134600, 137013, 136567, 136822, 138049, 139497, 139879, 139055, 139903, 139559, 139955, 139974, 139246, 139250, 139649, 138763, 139319, 138831, 139353, 139749, 139383, 138424, 139428, 139452, 140669, 140298, 140318, 140354, 140364, 141627, 140387, 140396, 141384, 140548, 140552, 140227, 142514, 143117, 143704, 143184, 142730, 142259, 143228, 142820, 142378, 142390, 142881, 142429, 143477, 144338, 145221, 145232, 144078, 144095, 144107, 144958, 144960, 143744, 143756, 144124, 144607, 144643, 144246, 145091, 144766, 145159, 147094, 146280, 147203, 147204, 146362, 145409, 146412, 146413, 146837, 145886, 146902, 146935, 146539, 147086, 148122, 147587, 148158, 148576, 148585, 148197, 148219, 147757, 147759, 148273, 147333, 148791, 147422, 147436, 148436, 148454, 148857, 147483, 147503, 149593, 150546, 152268, 151990, 152025, 151737, 152126, 152150, 152221, 152247, 24946, 24600, 24619, 7868, 27822, 28680, 20458, 11558, 5968, 6234, 34649, 33435, 33408, 12913, 16927, 29815, 5915, 87881, 85846, 45152, 16590, 43245, 81542, 81463, 81535, 90532, 84956, 84646, 96477, 96403, 84179, 84297, 90793, 82908, 129466, 110686, 133322, 112304, 127296, 140229, 147506, 144051, 144033, 143730, 143855, 143254, 269866, 287576, 289809, 291815, 297805, 297807, 297867, 297870, 141, 14423, 9715, 15472, 15487, 14713, 26476, 7952, 83168, 140248, 121934, 134655, 134699, 140549, 140222, 127935, 113470, 130141, 123284, 135003, 130869, 131535, 139890, 143835, 133222, 134226, 132891, 14439, 68340, 60625, 83088, 34037, 57982, 85733, 82613, 17425, 62024, 82553, 65529, 70386, 81480, 24795, 27349, 47719, 58110, 62506, 26696, 58590, 81004, 39148, 43134, 83161, 256013};
 		
 		int dataLength = data.length;
 		int endNum = startNum + 9;
@@ -1497,13 +1499,23 @@ public class UserService {
 		
 		/*Users user = userDao.selectUserStrange3(seqNo);*/ // 재경인명록
 		
-		TbUser tbUser = new TbUser();
+		String admission = "";
+		if(user.getAdmission() != null && user.getAdmission() != "") {
+			if(user.getAdmission().length() == 2) {
+				admission = "19"+user.getAdmission();
+			}else if(user.getAdmission().length() == 4) {
+				admission = user.getAdmission();
+			}else if(user.getAdmission().length() > 4) {
+				admission = user.getAdmission().substring(0, 4);
+			}
+		}
+		TbUser targetUser = new TbUser();
 		//조회된 데이터로 파라미터 세팅
-		tbUser.setName(user.getName());
-		tbUser.setRelation1(user.getRelation1());
-		tbUser.setAdmission(user.getAdmission());
+		targetUser.setName(user.getName());
+		targetUser.setRelation1(user.getRelation1());
+		targetUser.setAdmission(admission);
 		
-		List<Users> list = userDao.selectUserByNameNRel(tbUser);
+		List<Users> list = userDao.selectUserByNameNRel(targetUser);
 		System.out.println("조회된 값 확인 : "+list);
 		map.put("user", user);
 		map.put("list", list);
@@ -1529,8 +1541,16 @@ public class UserService {
 		// 수정해야될 데이터 조회
 		Users user2 = userDao.selectUserBySeqNo(seqNo);
 		
-		user2 = setParamForModify(user2, user);
-		int result = userDao.updateUser(user2);
+		/*user2 = setParamForModify(user2, user);*/
+		if(user.getCompany() != null && user.getCompany() != "") user2.setCompany(user.getCompany());
+		if(user.getDepartment() != null && user.getDepartment() != "") user2.setDepartment(user.getDepartment());
+		if(user.getPosition() != null && user.getPosition() != "") user2.setPosition(user.getPosition());
+		if(user.getMainPhone() != null && user.getMainPhone() != "") user2.setMainPhone(user.getMainPhone());
+		if(user.getHomeRoadAdd() != null && user.getHomeRoadAdd() != "") user2.setHomeAddress(user.getHomeRoadAdd());
+		if(user.getHomePhone() != null && user.getHomePhone() != "") user2.setHomePhone(user.getHomePhone());
+		if(user.getEmail() != null && user.getEmail() != "") user2.setEmail(user.getEmail());
+		
+		int result = userDao.updateSameDataByUserNew(user2);
 		return result;
 	}
 	
@@ -1710,19 +1730,48 @@ public class UserService {
 				}
 				
 			}*/
-			newList.get(i).setAdmission(newList.get(i).getAdmission().substring(0, 4));	//입학일세팅.
+			
+			if(newList.get(i).getAdmission() != null && newList.get(i).getAdmission() != "") {
+				if(newList.get(i).getAdmission().length() > 4) {
+					newList.get(i).setAdmission(newList.get(i).getAdmission().substring(0, 4));	//입학일세팅.
+				}
+				
+			}
+			
 			
 			List<Users> originList = userDao.selectSameDataByUserNew(newList.get(i));
 			System.out.println(originList.size()+" 개 검색됨!!");
 			
 			if(originList.size() == 0) {
 				System.out.println("검색결과 없음!!");
-				noData.add(newList.get(i).getSeqNo()); //검색데이터 없음 > 시퀀스 배열에 추가
+				/*noData.add(newList.get(i).getSeqNo());*/ //검색데이터 없음 > 시퀀스 배열에 추가
 				fail++;
 			}else if(originList.size() == 1){
 				System.out.println("1개 데이터 검색으로 수정처리중....");
-				originList.get(0).setSeqNo(newList.get(i).getSeqNo()); //user_new 의 시퀀스번호를 덧씌운다
-				upRes = userDao.updateSameDataByUserNew(originList.get(0));
+				newList.get(i).setSeqNo(originList.get(0).getSeqNo()); //user_new 의 시퀀스번호를 덧씌운다
+				
+				if(newList.get(i).getPosition() != null && newList.get(i).getPosition() != "") { //직책이 있으면 컴퍼니 필드에 합침.
+					if(newList.get(i).getCompany() != null && newList.get(i).getCompany() != "") {
+						newList.get(i).setCompany(newList.get(i).getCompany()+" "+newList.get(i).getPosition());
+					}				
+				}
+				
+				/*if(newList.get(i).getHomeRoadAdd() != null && newList.get(i).getHomeRoadAdd() != "") {
+					newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("전라북도", "전북"));
+					newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("전라남도", "전남"));
+					newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("충청북도", "충북"));
+					newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("충청남도", "충남"));
+					newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("경상북도", "경북"));
+					newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("경상남도", "경남"));
+					newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("인천시", "인천광역시"));
+					newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("대전시", "대전광역시"));
+					newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("부산시", "부산광역시"));
+					newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("울산시", "울산광역시"));
+					newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("서울시", "서울특별시"));
+					newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("광주시", "광주광역시"));
+					newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("대구시", "대구광역시"));
+				}*/
+				upRes = userDao.updateSameDataByUserNew(newList.get(i));
 				
 				if(upRes == 0) {
 					System.out.println("수정실패~!!");
@@ -1766,24 +1815,24 @@ public class UserService {
 						newGraduated = newList.get(i).getGraduated().substring(6, newList.get(i).getGraduated().length());
 					}*/
 					
-					if(originList.get(j).getGraduated() != null && originList.get(j).getGraduated().length() > 4) { //졸업일 형식 YYYY로 맞추기 위해 확인
-						if(originList.get(j).getGraduated().substring(0, 4).equals(newList.get(i).getGraduated().substring(0, 4))) { //졸업일이 같을때
+					if(newList.get(i).getGraduated() != null && newList.get(i).getGraduated().length() > 4) { //졸업일 형식 YYYY로 맞추기 위해 확인
+						if(newList.get(i).getGraduated().substring(0, 4).equals(originList.get(j).getGraduated().substring(0, 4))) { //졸업일이 같을때
 							System.out.println(j+" 번째 데이터 졸업년도 일치");
 							sameCnt++;
 							
 						}else { //입학년도 다를때
 							System.out.println(j+" 번째 데이터 졸업년도 불일치");
 						}
-					}else if(originList.get(j).getGraduated() != null && originList.get(j).getGraduated().length() == 4) { //졸업년도 4글자 YYYY형식일때
-						if(originList.get(j).getGraduated().equals(newList.get(i).getGraduated().substring(0, 4))) { //졸업일이 같을때
+					}else if(newList.get(i).getGraduated() != null && newList.get(i).getGraduated().length() == 4) { //졸업년도 4글자 YYYY형식일때
+						if(newList.get(i).getGraduated().equals(originList.get(j).getGraduated().substring(0, 4))) { //졸업일이 같을때
 							System.out.println(j+" 번째 데이터 졸업년도 일치");
 							sameCnt++;
 							
 						}else { //입학년도 다를때
 							System.out.println(j+" 번째 데이터 졸업년도 불일치");
 						}
-					}else if(originList.get(j).getGraduated() != null && originList.get(j).getGraduated().length() == 2) { //졸업년도 4글자 YYYY형식일때
-						if(("19"+originList.get(j).getGraduated()).equals(newList.get(i).getGraduated().substring(0, 4))) { //졸업일이 같을때
+					}else if(newList.get(i).getGraduated() != null && newList.get(i).getGraduated().length() == 2) { //졸업년도 4글자 YYYY형식일때
+						if(("19"+newList.get(i).getGraduated()).equals(originList.get(j).getGraduated().substring(0, 4))) { //졸업일이 같을때
 							System.out.println(j+" 번째 데이터 졸업년도 일치");
 							sameCnt++;
 							
@@ -1793,12 +1842,13 @@ public class UserService {
 					}
 					
 					//학과 비교
-					if(originList.get(j).getRelation2() != null && originList.get(j).getRelation2().contains(newList.get(i).getRelation2())) {
-						System.out.println(j+" 번째 데이터 학과 일치");
-						sameCnt++;
-	
-					}else if(originList.get(j).getRelation2() != null && !originList.get(j).getRelation2().contains(newList.get(i).getRelation2().substring(0,2))) {
-						System.out.println(j+" 번째 데이터 학과 불일치");
+					if(originList.get(j).getRelation2() != null && newList.get(i).getRelation2().length() > 2) {
+						if(originList.get(j).getRelation2().contains(newList.get(i).getRelation2().substring(0,2))) {
+							System.out.println(j+" 번째 데이터 학과 일치");
+							sameCnt++;
+						}else if(!originList.get(j).getRelation2().contains(newList.get(i).getRelation2().substring(0,2))) {
+							System.out.println(j+" 번째 데이터 학과 불일치");
+						}
 					}
 					
 					if(sameCnt > 0) {
@@ -1813,8 +1863,30 @@ public class UserService {
 				
 				//데이터 일치하는 배열 갯수 확인 해서 수정 혹은 실패목록으로 할당
 				if(waitData.size() == 1) { //일치데이터 있고 그 데이터가 1개일때 수정처리!
-					waitData.get(0).setSeqNo(newList.get(i).getSeqNo());
-					upRes = userDao.updateSameDataByUserNew(waitData.get(0));
+					/*waitData.get(0).setSeqNo(newList.get(i).getSeqNo());*/
+					newList.get(i).setSeqNo(waitData.get(0).getSeqNo());
+					if(newList.get(i).getPosition() != null && newList.get(i).getPosition() != "") { //직책이 있으면 컴퍼니 필드에 합침.
+						if(newList.get(i).getCompany() != null && newList.get(i).getCompany() != "") {
+							newList.get(i).setCompany(newList.get(i).getCompany()+" "+newList.get(i).getPosition());
+						}				
+					}
+					
+					/*if(newList.get(i).getHomeRoadAdd() != null && newList.get(i).getHomeRoadAdd() != "") {
+						newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("전라북도", "전북"));
+						newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("전라남도", "전남"));
+						newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("충청북도", "충북"));
+						newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("충청남도", "충남"));
+						newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("경상북도", "경북"));
+						newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("경상남도", "경남"));
+						newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("인천시", "인천광역시"));
+						newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("대전시", "대전광역시"));
+						newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("부산시", "부산광역시"));
+						newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("울산시", "울산광역시"));
+						newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("서울시", "서울특별시"));
+						newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("광주시", "광주광역시"));
+						newList.get(i).setHomeRoadAdd(newList.get(i).getHomeRoadAdd().replaceAll("대구시", "대구광역시"));
+					}*/
+					upRes = userDao.updateSameDataByUserNew(newList.get(i));
 					
 					if(upRes == 0) {
 						System.out.println("수정실패~!!");
@@ -1828,7 +1900,7 @@ public class UserService {
 				}else if(waitData.size() == 0) { //일치데이터가 없을때
 					System.out.println("일치하는 데이터가 없음.. 목록에 추가~!!");
 					fail++;
-					noData.add(newList.get(i).getSeqNo());
+					/*noData.add(newList.get(i).getSeqNo());*/
 					
 				}else if(waitData.size() > 1) { //일치데이터가 다수일때
 					System.out.println("일치하는 데이터가 다수임.. 목록에 추가~!!");
@@ -1843,12 +1915,287 @@ public class UserService {
 		//전체결과 출력
 		System.out.println("#################################################");
 		System.out.println("중복데이터 : "+sameData);
-		System.out.println("없는데이터 : "+noData);
+		/*System.out.println("없는데이터 : "+noData);*/
 		System.out.println("총 조회 데이터수 : "+newList.size());
 		System.out.println("성공건수 : "+success);
 		System.out.println("실패건수 : "+fail);
-		System.out.println("일치데이터 없음 : "+noData.size());
+		/*System.out.println("일치데이터 없음 : "+noData.size());*/
 		System.out.println("중복데이터 : "+sameData.size());
 		System.out.println("#################################################");
+	}
+	
+	// 추가데이터 덮어쓰기
+	public void dataAdded() {
+		// 학교에서 받은 데이터 조회
+		List<Users> newList = userDao.selectDataAdded();
+		
+		// 조회된 데이터의 단대, 입학일, 이름으로 해당 데이터 조회하고 1개면 수정. 2개이상일 경우 이상데이터로 추출 수정프로그램에서 수동으로 수정가능하게 조치
+		// 해당 배열의 시퀀스넘버는 북대 행정실에서 새로 넘겨받은 자료의 시퀀스넘버임.
+		List<Integer> noData = new ArrayList<Integer>(); //검색데이터 없을때
+		List<Integer> sameData = new ArrayList<Integer>(); //2개이상 검색 되서 세부 비교에서 정확하게 지목이 안될때 추가
+		int success = 0; //수정된 건수
+		int fail = 0; //실패한 건수 - 검색데이터 없거나 2개이상검색된 후 수정 안된 사례
+		int upRes = 0;
+		int sameCnt = 0;
+		List<Users> waitData = new ArrayList<Users>(); //일치항목있어 수정대기중인 데이터, 원본데이터 시퀀스넘버임
+		
+		for(int i=0; i<newList.size(); i++) {
+			System.out.println("*************************************************");
+			System.out.println(i+" 번째 검색중.........");
+			
+			/*if(newList.get(i).getRelation1().equals("인문과학대학")) {
+				newList.get(i).setRelation1("인문대학");
+			}else if(newList.get(i).getRelation1().equals("문과대학")) {
+				newList.get(i).setRelation1("인문대학");
+			}else if(newList.get(i).getRelation1().equals("이과대학")) {
+				newList.get(i).setRelation1("자연과학대학");
+			}else if(newList.get(i).getRelation1().equals("법정대학")) {
+				if(newList.get(i).getRelation2().equals("정치외교학") || newList.get(i).getRelation2().equals("행정학")) {
+					newList.get(i).setRelation1("사회과학대학");
+				}else {
+					newList.get(i).setRelation1("법과대학");
+				}				
+			}else if(newList.get(i).getRelation1().equals("농과대학")) {
+				newList.get(i).setRelation1("농업생명과학대학");
+			}else if(newList.get(i).getRelation1().equals("산업보건대학원")) {
+				newList.get(i).setRelation1("보건대학원");
+			}else if(newList.get(i).getRelation1().equals("문리과대학")) {
+				if(newList.get(i).getRelation2().equals("물리학과") || newList.get(i).getRelation2().equals("화학과") || newList.get(i).getRelation2().equals("생물학과")) {
+					newList.get(i).setRelation1("자연과학대학");
+				}else {
+					newList.get(i).setRelation1("인문대학");
+				}
+				
+			}*/
+			
+			if(newList.get(i).getAdmission() != null && newList.get(i).getAdmission() != "") {
+				if(newList.get(i).getAdmission().length()==9) {
+					newList.get(i).setAdmission(newList.get(i).getAdmission().substring(0, 4));	//입학일세팅.
+				}else if(newList.get(i).getAdmission().length()==10) {
+					newList.get(i).setAdmission(newList.get(i).getAdmission().substring(6, newList.get(i).getAdmission().length()));	//입학일세팅.
+				}
+				
+			}
+			
+			
+			List<Users> originList = userDao.selectDataMatch(newList.get(i));
+			System.out.println(originList.size()+" 개 검색됨!!");
+			
+			if(originList.size() == 0) {
+				System.out.println("검색결과 없음!!");
+				/*noData.add(newList.get(i).getSeqNo());*/ //검색데이터 없음 > 시퀀스 배열에 추가
+				fail++;
+			}else if(originList.size() == 1){
+				System.out.println("1개 데이터 검색으로 수정처리중....");
+				newList.get(i).setSeqNo(originList.get(0).getSeqNo()); //user_new 의 시퀀스번호를 덧씌운다
+				upRes = userDao.updateSameDataByUserNew2(newList.get(i));
+				
+				if(upRes == 0) {
+					System.out.println("수정실패~!!");
+					fail++;
+				}else if(upRes > 0 ) {
+					System.out.println("수정완료~!!");
+					success++;
+					upRes = 0;
+				}
+			}else if(originList.size() > 1) {
+				
+				for(int j=0; j<originList.size(); j++) {
+					//입학일 비교
+					/*String newAdmission = "";
+					if(newList.get(i).getAdmission().length() == 9) {
+						newAdmission = newList.get(i).getAdmission().substring(0, 4);
+					}else if(newList.get(i).getAdmission().length() == 10) {
+						newAdmission = newList.get(i).getAdmission().substring(6, newList.get(i).getAdmission().length());
+					}
+					if(originList.get(j).getAdmission() != null && originList.get(j).getAdmission().length() > 4) { //입학일 형식 YYYY로 맞추기 위해 확인
+						if(originList.get(j).getAdmission().substring(0, 4).equals(newAdmission)) { //입학일이 같을때
+							System.out.println(j+" 번째 데이터 입학년도 일치");
+							sameCnt++;
+							
+						}else { //입학년도 다를때
+							System.out.println(j+" 번째 데이터 입학년도 불일치");
+						}
+					}else if(originList.get(j).getAdmission() != null && originList.get(j).getAdmission().length() == 4) { //입학년도 4글자 YYYY형식일때
+						if(originList.get(j).getAdmission().substring(0, originList.get(j).getAdmission().length()).equals(newList.get(i).getAdmission().substring(0, 4))) { //입학일이 같을때
+							System.out.println(j+" 번째 데이터 입학년도 일치");
+							sameCnt++;
+							
+						}else { //입학년도 다를때
+							System.out.println(j+" 번째 데이터 입학년도 불일치");
+						}
+					}*/
+					
+					//졸업일 비교
+					/*String newGraduated = newList.get(i).getGraduated().substring(0,4);
+					if(newList.get(i).getGraduated().length() == 10) {
+						newGraduated = newList.get(i).getGraduated().substring(6, newList.get(i).getGraduated().length());
+					}*/
+					
+					if(newList.get(i).getGraduated() != null && newList.get(i).getGraduated().length() > 4) { //졸업일 형식 YYYY로 맞추기 위해 확인
+						if(originList.get(j).getGraduated().length() == 2) {
+							if(newList.get(i).getGraduated().substring(6, newList.get(i).getGraduated().length()).equals("19"+originList.get(j).getGraduated())) { //졸업일이 같을때
+								System.out.println(j+" 번째 데이터 졸업년도 일치");
+								sameCnt++;
+								
+							}else { //입학년도 다를때
+								System.out.println(j+" 번째 데이터 졸업년도 불일치");
+							}
+						}else if(originList.get(j).getGraduated().length() == 4) {
+							if(newList.get(i).getGraduated().substring(6, newList.get(i).getGraduated().length()).equals(originList.get(j).getGraduated())) { //졸업일이 같을때
+								System.out.println(j+" 번째 데이터 졸업년도 일치");
+								sameCnt++;
+								
+							}else { //입학년도 다를때
+								System.out.println(j+" 번째 데이터 졸업년도 불일치");
+							}
+						}else if(originList.get(j).getGraduated().length() > 4) {
+							if(newList.get(i).getGraduated().substring(6, newList.get(i).getGraduated().length()).equals("19"+originList.get(j).getGraduated().substring(0, 4))) { //졸업일이 같을때
+								System.out.println(j+" 번째 데이터 졸업년도 일치");
+								sameCnt++;
+								
+							}else { //입학년도 다를때
+								System.out.println(j+" 번째 데이터 졸업년도 불일치");
+							}
+						}
+						
+					}else if(newList.get(i).getGraduated() != null && newList.get(i).getGraduated().length() == 4) { //졸업년도 4글자 YYYY형식일때
+						if(originList.get(j).getGraduated().length() == 2) {
+							if(newList.get(i).getGraduated().equals("19"+originList.get(j).getGraduated())) { //졸업일이 같을때
+								System.out.println(j+" 번째 데이터 졸업년도 일치");
+								sameCnt++;
+								
+							}else { //입학년도 다를때
+								System.out.println(j+" 번째 데이터 졸업년도 불일치");
+							}
+						}else if(originList.get(j).getGraduated().length() == 4) {
+							if(newList.get(i).getGraduated().equals(originList.get(j).getGraduated())) { //졸업일이 같을때
+								System.out.println(j+" 번째 데이터 졸업년도 일치");
+								sameCnt++;
+								
+							}else { //입학년도 다를때
+								System.out.println(j+" 번째 데이터 졸업년도 불일치");
+							}
+						}else if(originList.get(j).getGraduated().length() > 4) {
+							if(newList.get(i).getGraduated().equals("19"+originList.get(j).getGraduated().substring(0, 4))) { //졸업일이 같을때
+								System.out.println(j+" 번째 데이터 졸업년도 일치");
+								sameCnt++;
+								
+							}else { //입학년도 다를때
+								System.out.println(j+" 번째 데이터 졸업년도 불일치");
+							}
+						}
+						
+					}
+					
+					//학과 비교
+					if(originList.get(j).getRelation2() != null && newList.get(i).getRelation2().length() > 2) {
+						if(originList.get(j).getRelation2().contains(newList.get(i).getRelation2().substring(0,2))) {
+							System.out.println(j+" 번째 데이터 학과 일치");
+							sameCnt++;
+						}else if(!originList.get(j).getRelation2().contains(newList.get(i).getRelation2().substring(0,2))) {
+							System.out.println(j+" 번째 데이터 학과 불일치");
+						}
+					}
+					
+					if(sameCnt > 0) {
+						System.out.println(sameCnt+" 개 항목 일치로 대기목록에 추가~!!");
+						/*originList.get(j).setSeqNo(newList.get(i).getSeqNo());*/
+						waitData.add(originList.get(j));
+					}else if(sameCnt == 0) {
+						System.out.println("일치항목이 없어 처리하지 않음~!!");
+					}
+					sameCnt = 0;
+				} //for문 끝
+				
+				//데이터 일치하는 배열 갯수 확인 해서 수정 혹은 실패목록으로 할당
+				if(waitData.size() == 1) { //일치데이터 있고 그 데이터가 1개일때 수정처리!
+					/*waitData.get(0).setSeqNo(newList.get(i).getSeqNo());*/
+					newList.get(i).setSeqNo(waitData.get(0).getSeqNo());
+					upRes = userDao.updateSameDataByUserNew2(newList.get(i));
+					
+					if(upRes == 0) {
+						System.out.println("수정실패~!!");
+						fail++;
+					}else if(upRes > 0 ) {
+						System.out.println("수정완료~!!");
+						success++;
+						upRes = 0;
+						waitData = new ArrayList<Users>();
+					}
+				}else if(waitData.size() == 0) { //일치데이터가 없을때
+					System.out.println("일치하는 데이터가 없음.. 목록에 추가~!!");
+					fail++;
+					/*noData.add(newList.get(i).getSeqNo());*/
+					
+				}else if(waitData.size() > 1) { //일치데이터가 다수일때
+					System.out.println("일치하는 데이터가 다수임.. 목록에 추가~!!");
+					fail++;
+					sameData.add(newList.get(i).getSeqNo());
+					waitData = new ArrayList<Users>();
+				}
+			}
+			
+		} //for문 끝
+		
+		//전체결과 출력
+		System.out.println("#################################################");
+		System.out.println("중복데이터 : "+sameData);
+		/*System.out.println("없는데이터 : "+noData);*/
+		System.out.println("총 조회 데이터수 : "+newList.size());
+		System.out.println("성공건수 : "+success);
+		System.out.println("실패건수 : "+fail);
+		/*System.out.println("일치데이터 없음 : "+noData.size());*/
+		System.out.println("중복데이터 : "+sameData.size());
+		System.out.println("#################################################");		
+	}
+	
+	//석,박사 학위 정보 등록
+	public void overlapGradeJb() {
+		List<Integer> noData = new ArrayList<Integer>();
+		List<Integer> chkData = new ArrayList<Integer>();
+		List<Integer> sameData = new ArrayList<Integer>();
+		
+		int succ = 0;
+		int sameCnt = 0;
+		List<UserGrade> list = userDao.selectGradeData();
+		
+		//System.out.println("서브스트링 체크 : "+list.get(0).getGraduated().substring(2,4));
+		for(int i=0; i<list.size(); i++) {
+			list.get(i).setGraduated(list.get(i).getGraduated().substring(2,4));
+			List<UserLastest> list2 = userDao.overlapDataLastest(list.get(i));
+			
+			System.out.println(i+" 번째 데이터 확인");
+			if(list2.size() == 0) {
+				noData.add(list.get(i).getSeqNo());
+				System.out.println("일치데이터 없음");
+			}else if(list2.size() == 1) {
+				list2.get(0).setEtc3(list.get(i).getEtc3());
+				int result = userDao.updateGradeLastest(list2.get(0));
+				if(result == 1) {
+					succ++;
+				}
+				
+			}else if(list2.size() > 1) {
+				sameCnt = 0;
+				for(int j=0; j<list2.size(); j++) {
+					if(list2.get(j).getGraduated().equals(list.get(i).getGraduated())) {
+						sameCnt++;
+						sameData.add(j);
+					}
+				}
+				if(sameCnt == 1) {
+					int result = userDao.updateGradeLastest(list2.get(sameData.get(0)));
+					if(result == 1) {
+						succ++;
+						System.out.println("졸업일 일치 데이터 1개로 학위등록");
+					}
+				}
+			}
+		}
+		System.out.println("========================================");
+		System.out.println("체크할 데이터 목록 : "+chkData);
+		System.out.println("체크할 데이터 수 : "+chkData.size());
+		System.out.println("총 학위등록 수 : "+succ);
 	}
 }

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.jbuniv.user.domain.NewUser;
 import kr.co.jbuniv.user.domain.TbUser;
+import kr.co.jbuniv.user.domain.UserGrade;
+import kr.co.jbuniv.user.domain.UserLastest;
 import kr.co.jbuniv.user.domain.Users;
 
 @Repository
@@ -77,8 +79,8 @@ public class UserDao {
 	}
 	
 	// DB정제 > 어깨동무 수정본 데이터 기분 동명인 검색(어깨동무)
-	public List<Users> selectUserByNameNRel(TbUser tbUser){
-		return sqlSession.selectList("UserDao.selectUserByNameNRel", tbUser);
+	public List<Users> selectUserByNameNRel(TbUser user){
+		return sqlSession.selectList("UserDao.selectUserByNameNRel", user);
 	}
 	
 	// 이상데이터 조회(어깨동무 신구)
@@ -171,4 +173,34 @@ public class UserDao {
 		return sqlSession.selectList("UserDao.selectUserAddDataAll");
 	}
 	
+	// updateSameDataByUserNew2
+	public int updateSameDataByUserNew2(Users user){
+		return sqlSession.update("UserDao.updateSameDataByUserNew2", user);
+	}
+	
+	//추가데이터 기반 일치 데이터 조회
+	public List<Users> selectDataMatch(Users user){
+		return sqlSession.selectList("UserDao.selectDataMatch", user);
+	}
+	
+	// 추가요청 자료조회
+	public List<Users> selectDataAdded(){
+		return sqlSession.selectList("UserDao.selectDataAdded");
+	}
+	
+	//학위자료 조회
+	public List<UserGrade> selectGradeData(){
+		return sqlSession.selectList("UserDao.selectGradeData");
+	}
+	
+	//최신자료에서 일치자료 조회
+	public List<UserLastest> overlapDataLastest(UserGrade userGrade){
+		return sqlSession.selectList("UserDao.overlapDataLastest",userGrade);
+	}
+	
+	//학위입력
+	public int updateGradeLastest(UserLastest userLastest){
+		return sqlSession.update("UserDao.updateGradeLastest",userLastest);
+	}
 }
+

@@ -58,7 +58,29 @@ public class Users {
 	private String homeRoadAdd;
 	private String comRoadAdd;
 	private String rootName;
+	private String jobcode1;
+	private String jobcode2;
+	private String jobcode3;
 	
+	
+	public String getJobcode1() {
+		return jobcode1;
+	}
+	public void setJobcode1(String jobcode1) {
+		this.jobcode1 = jobcode1;
+	}
+	public String getJobcode2() {
+		return jobcode2;
+	}
+	public void setJobcode2(String jobcode2) {
+		this.jobcode2 = jobcode2;
+	}
+	public String getJobcode3() {
+		return jobcode3;
+	}
+	public void setJobcode3(String jobcode3) {
+		this.jobcode3 = jobcode3;
+	}
 	public String getRootName() {
 		return rootName;
 	}

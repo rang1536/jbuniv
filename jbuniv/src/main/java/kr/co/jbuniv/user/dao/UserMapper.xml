@@ -235,7 +235,7 @@
 	SELECT
 		*
 	FROM
-		JBUNIV.USERS
+		JBUNIV.USER_NEW
 	WHERE
 		SEQ_NO = #{seqNo}
 </select>
@@ -306,14 +306,14 @@
 	SELECT
 		*
 	FROM
-		JBUNIV.USERS
+		JBUNIV.USER_NEW
 	WHERE
 		NAME = #{name}
 	<if test="relation1 != null and relation1 != ''">
 		AND RELATION_1 = #{relation1}
 	</if>
 	<if test="admission != null and admission != ''">
-		AND ADMISSION LIKE '%'||#{admission}
+		AND ADMISSION LIKE #{admission}||'%'
 	</if>
 </select>
 
@@ -374,7 +374,7 @@
 	SELECT
 		*
 	FROM
-		JBUNIV.TB_USER2
+		JBUNIV.users
 	WHERE
 		SEQ_NO = #{seqNo}
 </select>
@@ -513,45 +513,88 @@
 <!-- 추가로 받은 데이터 조회 -->
 <select id="selectUserAddDataAll" resultType="kr.co.jbuniv.user.domain.Users">
 	SELECT *
-	FROM JBUNIV.USER_UPDATE2
+	FROM JBUNIV.USERS
+	WHERE JOBCODE1 IS NOT NULL
 </select>
 
 <!-- 추가데이터 기반 일치 데이터 조회 -->
 <select id="selectSameDataByUserNew" parameterType="kr.co.jbuniv.user.domain.Users" resultType="kr.co.jbuniv.user.domain.Users">
 	SELECT *
-	FROM JBUNIV.USERS
+	FROM JBUNIV.USER_NEW
 	WHERE NAME=#{name}
 	AND RELATION_1 = #{relation1}
-	AND ADMISSION like #{admission}||'%'
+	<if test="admission != null and admission !=''">AND ADMISSION like #{admission}||'%'</if>
 </select>
 
 <update id="updateSameDataByUserNew" parameterType="kr.co.jbuniv.user.domain.Users">
 	UPDATE JBUNIV.USER_NEW
 	SET NAME=#{name}
-	<if test="company != null and company != ''">,COMPANY=#{company}</if>
-	<if test="department != null and department != ''">,DEPARTMENT=#{department}</if>
-	<if test="position != null and position != ''">,POSITION=#{position}</if>
+	<!-- <if test="company != null and company != ''">,COMPANY=#{company}</if>
 	<if test="mainPhone != null and mainPhone != ''">,MAIN_PHONE=#{mainPhone}</if>
 	<if test="zipCode != null and zipCode != ''">,ZIPCODE=#{zipCode}</if>
 	<if test="homeRoadAdd != null and homeRoadAdd != ''">,HOME_ADDRESS=#{homeRoadAdd}</if>
 	<if test="homePhone != null and homePhone != ''">,HOME_PHONE=#{homePhone}</if>
 	<if test="email != null and email != ''">,EMAIL=#{email}</if>
+	<if test="hp != null and hp != ''">,HP = #{hp}</if> -->
+	<if test="jobcode1 != null and jobcode1 != ''">,JOBCODE1 = #{jobcode1}</if>
+	<if test="jobcode2 != null and jobcode2 != ''">,JOBCODE2 = #{jobcode2}</if>
+	<if test="jobcode3 != null and jobcode3 != ''">,JOBCODE3 = #{jobcode3}</if>
 	WHERE SEQ_NO = #{seqNo}
 	
 </update>
 
-<!-- <update id="updateSameDataByUserNew2" parameterType="kr.co.jbuniv.user.domain.Users">
+<update id="updateSameDataByUserNew2" parameterType="kr.co.jbuniv.user.domain.Users">
 	UPDATE JBUNIV.USER_NEW
 	SET NAME=#{name}
 	<if test="company != null and company != ''">,COMPANY=#{company}</if>
 	<if test="position != null and position != ''">,POSITION=#{position}</if>
 	<if test="mainPhone != null and mainPhone != ''">,MAIN_PHONE=#{mainPhone}</if>
 	<if test="zipCode != null and zipCode != ''">,ZIPCODE=#{zipCode}</if>
-	<if test="homeRoadAdd != null and homeRoadAdd != ''">,HOME_ADDRESS=#{homeRoadAdd}</if>
+	<if test="homeAddress != null and homeAddress != ''">,HOME_ADDRESS=#{homeAddress}</if>
 	<if test="homePhone != null and homePhone != ''">,HOME_PHONE=#{homePhone}</if>
+	<if test="comAddress != null and comAddress != ''">,COM_ADDRESS=#{comAddress}</if>
+	<if test="comFax != null and comFax != ''">,COM_FAX=#{comFax}</if>
+	<if test="comZipCode != null and comZipCode != ''">,COM_ZIPCODE=#{comZipCode}</if>
 	<if test="email != null and email != ''">,EMAIL=#{email}</if>
+	<if test="hp != null and hp != ''">,HP=#{hp}</if>
+	WHERE SEQ_NO = #{seqNo}	
+</update>
+
+<!-- 추가되는 수정할데이터 조회 -->
+<select id="selectDataAdded" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT *
+	FROM JBUNIV.USER_UPDATE2
+</select>
+
+<!-- 어깨동무에서 일치데이터 조회 -->
+<select id="selectDataMatch" parameterType="kr.co.jbuniv.user.domain.Users" resultType="kr.co.jbuniv.user.domain.Users">
+	SELECT *
+	FROM JBUNIV.USER_NEW
+	WHERE NAME=#{name}
+	AND RELATION_1 = #{relation1}
+	<if test="admission !=null and admission != ''">AND ADMISSION LIKE #{admission}||'%'</if>
+</select>
+
+<!-- 학위자료 조회 -->
+<select id="selectGradeData" resultType="kr.co.jbuniv.user.domain.UserGrade">
+	SELECT SEQ_NO, NAME, RELATION_1, GRADUATED, ETC3
+	FROM JBUNIV.USER_GRADE
+</select>
+
+<!-- 최신자료에서 일치자료 조회 -->
+<select id="overlapDataLastest" parameterType="kr.co.jbuniv.user.domain.UserGrade" resultType="kr.co.jbuniv.user.domain.UserLastest">
+	SELECT SEQ_NO, NAME, RELATION_1, GRADUATED
+	FROM JBUNIV.USER_LASTEST
+	WHERE NAME = #{name}
+	AND RELATION_1 = #{relation1}
+	AND GRADUATED = #{graduated}
+</select>
+
+<!-- 학위입력 -->
+<update id="updateGradeLastest" parameterType="kr.co.jbuniv.user.domain.UserLastest">
+	UPDATE JBUNIV.USER_LASTEST
+	SET ETC3 = #{etc3}
 	WHERE SEQ_NO = #{seqNo}
-	
-</update> -->
+</update>
 
 </mapper>

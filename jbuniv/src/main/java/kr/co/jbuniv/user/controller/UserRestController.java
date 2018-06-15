@@ -90,6 +90,7 @@ public class UserRestController {
 			@RequestParam(value="seqNo2")int seqNo2){
 		
 		int result = userService.modifyDataServ(seqNo, seqNo2);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		if(result == 1) {
 			map.put("check", "delete");

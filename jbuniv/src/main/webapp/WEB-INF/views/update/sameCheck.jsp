@@ -41,18 +41,19 @@
 	}
 	
 	function modifyData(seqNo, seqNo2){
-		alert(seqNo+", "+seqNo2)
 		/* location.href='refineData?seqNo='+seqNo+'&seqNo2='+seqNo2; */
-		$.ajax({
-			url : 'modifyData',
-			data : {'seqNo':seqNo, 'seqNo2':seqNo2},
-			type : 'post',
-			dataType:'json',
-			success: function(data){
-				alert("수정됨.");
-				window.location.reload(true);
-			}
-		})
+		if(confirm('정말 수정하겠습니까?')){
+			$.ajax({
+				url : 'modifyData',
+				data : {'seqNo':seqNo, 'seqNo2':seqNo2},
+				type : 'post',
+				dataType:'json',
+				success: function(data){
+					alert("수정됨.");
+					window.location.reload(true);
+				}
+			})
+		}	
 	}
 </script>
 </head>
@@ -106,8 +107,8 @@
 	<br/>
 	<div class="row">
 		<c:forEach var="list" items="${list}" varStatus="i">
-			<h3>검색된 데이터 ${i.index +1} (${list.etc2 })</h3>
-			<table>
+			<h3>검색된 데이터 ${i.index +1} <%-- (${list.etc2 }) --%></h3>
+			<table style="width:100%;">
 				<tr>
 					<th>번호</th>
 					<th>이름</th>
@@ -150,7 +151,7 @@
 				</tr>
 				<tr>
 					<td colspan="9">
-						<button type="button" class="btn btn-danger" onclick="deleteData('${list.seqNo}')">삭제</button>
+						<%-- <button type="button" class="btn btn-danger" onclick="deleteData('${list.seqNo}')">삭제</button> --%>
 						<button type="button" class="btn btn-success" onclick="modifyData('${list.seqNo}','${user.seqNo}')">수정</button>
 					</td>
 				</tr>

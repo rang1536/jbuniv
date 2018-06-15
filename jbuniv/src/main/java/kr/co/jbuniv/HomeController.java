@@ -26,7 +26,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		Map<String, Integer> map = userService.readDbCountServ();
-		userService.refineDataLastestServ();
+		userService.overlapGradeJb();
 		model.addAttribute("count1", map.get("count1"));
 		model.addAttribute("count2", map.get("count2"));
 		return "index";
